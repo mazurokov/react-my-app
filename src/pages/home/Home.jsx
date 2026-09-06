@@ -6,41 +6,41 @@ import Toolbar from "../../components/Toolbar/Toolbar.jsx";
 import Counter from "./components/Counter/Counter.jsx";
 import LoginForm from "../../components/Form/LoginForm.jsx";
 import MapList from "./components/MapList/MapList.jsx";
-import Test from "./components/Test/Test.jsx";
+import User from "./components/User/User.jsx";
+import Users from "./components/Users/Users.jsx";
+
+import styles from "./Home.module.sass";
+import NameInput from "./components/NameInput/NameInput.jsx";
+import NewTimer from "./components/NewTimer/NewTimer.jsx";
+import GetUsers from "./components/GetUsers/GetUsers.jsx";
+import AddUsers from "./components/AddUsers/AddUsers.jsx";
 
 export default function Home() {
-    return <>
-        <section className={"container"}>
-            <h1>Головна сторінка (Home)</h1>
-            <Test />
+  return (
+    <>
+      <section className={"container"}>
+        <h1>Головна сторінка (Home)</h1>
+        <div className={"test " + styles["home-components"]}>
+          <AddUsers />
 
-            <MapList />
+          <GetUsers />
 
-            <Counter />
+          <NewTimer />
 
-            <Toolbar />
-            <br/>
+          <NameInput />
 
-            <UserProfile />
-            <br/>
-            <Timer />
-            <br/>
-            <WindowWidth />
-
-            <LoginForm />
-            <br/>
-            -----------
-            <br/>
-            <h2>Список користувачів</h2>
-            <p>Використання useEffect для отримання даних з API</p>
-            <p>Використання useState для збереження стану компоненту</p>
-            <p>Використання map для відображення списку користувачів</p>
-            <p>Використання ключів для оптимізації рендерингу списку</p>
-            <p>Використання CSS модулів для стилізації компоненту</p>
-            <p>Використання React Router для навігації між сторінками</p>
-            <p>Використання компонентів для розділення логіки та UI</p>
-            <p>Використання хуків для управління станом та ефектами</p>
-            <UserList />
-        </section>
-    </>;
+          <Users />
+          <User />
+          <MapList />
+          <Counter />
+          <Toolbar />
+          <UserProfile />
+          <Timer />
+          <WindowWidth />
+          <LoginForm />
+          <UserList />
+        </div>
+      </section>
+    </>
+  );
 }

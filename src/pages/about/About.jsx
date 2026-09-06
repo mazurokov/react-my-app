@@ -1,3 +1,3 @@
 export default function Footer() {
-    return <h1>Про нас (About)</h1>;
+  return <h1>Про нас (About)</h1>;
 }
