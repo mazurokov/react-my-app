@@ -8,6 +8,7 @@ function Users() {
   const [error, setError] = useState(null);
 
   const [isLoadingPost, setIsLoadingPost] = useState(false);
+  const [isLoadingEdit, setIsLoadingEdit] = useState(false);
   const [isLoadingGet, setIsLoadingGet] = useState(true);
   const [isDeletingArray, setIsDeletingArray] = useState([]);
   const [editingUserId, setEditingUserId] = useState(null);
@@ -49,16 +50,24 @@ function Users() {
   };
 
   const handleSubmit = async (event) => {
-    console.log("test event", event);
-
     event.preventDefault();
 
     if (editingUserId === null) {
       setIsLoadingPost(true);
-      await createUser();
-      setIsLoadingPost(false);
+
+      try {
+        await createUser();
+      } finally {
+        setIsLoadingPost(false);
+      }
     } else {
-      await saveUser(editingUserId);
+      setIsLoadingEdit(true);
+
+      try {
+        await saveUser(editingUserId);
+      } finally {
+        setIsLoadingEdit(false);
+      }
     }
   };
 
@@ -166,7 +175,7 @@ function Users() {
           value={userEmail}
           onChange={(event) => setUserEmail(event.target.value)}
         />
-        <button type="submit">
+        <button disabled={isLoadingPost || isLoadingEdit} type="submit">
           {editingUserId === null ? "Add User" : "Save User"}
         </button>
       </form>
@@ -191,25 +200,24 @@ function Users() {
 
               {editingUserId === user.id ? (
                 <>
-                  <button onClick={() => saveUser(user.id)}>Save</button>
                   <button onClick={cancelEdit}>Cancel</button>
                 </>
               ) : (
                 <>
                   <button onClick={() => editUser(user.id)}>Edit</button>
-
-                  <button
-                    disabled={isDeletingArray.includes(user.id)}
-                    onClick={() => {
-                      deleteUser(user.id);
-                    }}
-                  >
-                    {isDeletingArray.includes(user.id)
-                      ? "Deleting..."
-                      : "Delete"}
-                  </button>
                 </>
               )}
+
+              <button
+                  disabled={isDeletingArray.includes(user.id)}
+                  onClick={() => {
+                    deleteUser(user.id);
+                  }}
+              >
+                {isDeletingArray.includes(user.id)
+                    ? "Deleting..."
+                    : "Delete"}
+              </button>
             </li>
           ))}
         </ul>

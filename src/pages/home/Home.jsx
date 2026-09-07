@@ -21,6 +21,10 @@ export default function Home() {
       <section className={"container"}>
         <h1>Головна сторінка (Home)</h1>
         <div className={"test " + styles["home-components"]}>
+
+          <Counter />
+
+
           <AddUsers />
 
           <GetUsers />
@@ -32,7 +36,6 @@ export default function Home() {
           <Users />
           <User />
           <MapList />
-          <Counter />
           <Toolbar />
           <UserProfile />
           <Timer />
