@@ -10,6 +10,7 @@ function Users() {
   const [isLoadingPost, setIsLoadingPost] = useState(false);
   const [isLoadingGet, setIsLoadingGet] = useState(true);
   const [isDeletingArray, setIsDeletingArray] = useState([]);
+  const [editingUserId, setEditingUserId] = useState(null);
 
   const createUser = async () => {
     try {
@@ -41,13 +42,24 @@ function Users() {
     }
   };
 
-  const addUsers = async (event) => {
+  const editUser = (id) => {
+    setUserName(users.find((user) => user.id === id)?.name || "");
+    setUserEmail(users.find((user) => user.id === id)?.email || "");
+    setEditingUserId(id);
+  };
+
+  const handleSubmit = async (event) => {
+    console.log("test event", event);
+
     event.preventDefault();
-    console.log("User Name:", userName);
-    console.log("User Email:", userEmail);
-    setIsLoadingPost(true);
-    await createUser();
-    setIsLoadingPost(false);
+
+    if (editingUserId === null) {
+      setIsLoadingPost(true);
+      await createUser();
+      setIsLoadingPost(false);
+    } else {
+      await saveUser(editingUserId);
+    }
   };
 
   const getUsers = async () => {
@@ -96,14 +108,52 @@ function Users() {
     }
   };
 
+  const cancelEdit = () => {
+    setEditingUserId(null);
+    setUserName("");
+    setUserEmail("");
+  };
+
+  const saveUser = async (id) => {
+    try {
+      const response = await fetch(
+        `https://jsonplaceholder.typicode.com/users/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: userName,
+            email: userEmail,
+          }),
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Не вдалося оновити користувача");
+      }
+
+      const updatedUser = await response.json();
+
+      setUsers((prevUsers) =>
+        prevUsers.map((user) => (user.id === id ? updatedUser : user)),
+      );
+      cancelEdit();
+    } catch (error) {
+      console.error("Error updating user:", error);
+      setError(error.message);
+    }
+  };
+
   useEffect(() => {
     getUsers();
   }, []);
 
   return (
     <div>
-      Add Users Component
-      <form onSubmit={addUsers}>
+      Users Component
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="userName"
@@ -116,8 +166,8 @@ function Users() {
           value={userEmail}
           onChange={(event) => setUserEmail(event.target.value)}
         />
-        <button disabled={isLoadingPost} type="submit">
-          Add User
+        <button type="submit">
+          {editingUserId === null ? "Add User" : "Save User"}
         </button>
       </form>
       {isLoadingGet ? (
@@ -138,14 +188,28 @@ function Users() {
               <span>
                 {user.name} - {user.email}
               </span>
-              <button
-                disabled={isDeletingArray.includes(user.id)}
-                onClick={() => {
-                  deleteUser(user.id);
-                }}
-              >
-                {isDeletingArray.includes(user.id) ? "Deleting..." : "Delete"}
-              </button>
+
+              {editingUserId === user.id ? (
+                <>
+                  <button onClick={() => saveUser(user.id)}>Save</button>
+                  <button onClick={cancelEdit}>Cancel</button>
+                </>
+              ) : (
+                <>
+                  <button onClick={() => editUser(user.id)}>Edit</button>
+
+                  <button
+                    disabled={isDeletingArray.includes(user.id)}
+                    onClick={() => {
+                      deleteUser(user.id);
+                    }}
+                  >
+                    {isDeletingArray.includes(user.id)
+                      ? "Deleting..."
+                      : "Delete"}
+                  </button>
+                </>
+              )}
             </li>
           ))}
         </ul>
