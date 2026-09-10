@@ -1,7 +1,10 @@
 import { useState } from "react";
+import useLogger from "./useLogger";
 
 function Counter() {
   const [count, setCount] = useState(0);
+
+  useLogger(count);
 
   return (
     <div>
