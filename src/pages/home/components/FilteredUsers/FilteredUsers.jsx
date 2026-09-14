@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-const [users, setUsers] = useState([]);
-const [search, setSearch] = useState("");
-
 function FilteredUsers() {
+  const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState("");
   const filter = users.filter((user) =>
     user.name.toLowerCase().includes(search.toLowerCase()),
   );
