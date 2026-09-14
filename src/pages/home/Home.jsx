@@ -33,11 +33,14 @@ export default function Home() {
 
         <h1>Головна сторінка (Home)</h1>
         <div className={"test " + styles["home-components"]}>
+
+          <Counter />
+
+
           <UserSearch />
 
           <FilteredUsers />
 
-          <Counter />
 
           <AddUsers />
 

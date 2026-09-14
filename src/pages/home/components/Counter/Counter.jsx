@@ -1,24 +1,28 @@
-import { useState } from "react";
-import useLogger from "./useLogger";
+import { useState, useCallback } from 'react';
+import Button from "../../../../components/Button/Button.jsx";
 
 function Counter() {
-  const [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
 
-  useLogger(count);
+    const handleClick = useCallback(() => {
+        console.log("click");
+    }, []);
 
-  return (
-    <div>
-      <h1>{count}</h1>
+    const handleClickIncrement = useCallback(() => {
+        console.log("click");
 
-      <button onClick={() => setCount(count + 1)}>Збільшити</button>
+        setCount(prevCount => prevCount + 1);
+    }, []);
 
-      <button onClick={() => setCount(count - 1)}>Зменшити</button>
+    return (
+        <div>
+            <Button onClick={handleClick}>click 1111</Button>
 
-      <button onClick={() => setCount(0)}>Скинути</button>
+            <p>Count: {count}</p>
 
-      {count % 2 === 0 ? <p>Число парне</p> : <p>Число непарне</p>}
-    </div>
-  );
+            <Button onClick={handleClickIncrement}>click 2222</Button>
+        </div>
+    );
 }
 
 export default Counter;
