@@ -1,28 +1,94 @@
-import { useState, useCallback } from 'react';
-import Button from "../../../../components/Button/Button.jsx";
+import { useReducer } from "react";
+
+const initialState = {
+  count: 0,
+  step: 1,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "INCREMENT":
+      return {
+        ...state,
+        count: state.count + state.step,
+      };
+
+    case "DECREMENT":
+      return {
+        ...state,
+        count: state.count - state.step,
+      };
+
+    case "RESET":
+      return {
+        ...state,
+        count: 0,
+      };
+
+    case "INCREMENT_BY":
+      return {
+        ...state,
+        count: state.count + action.amount,
+      };
+
+    case "DECREMENT_BY":
+      return {
+        ...state,
+        count: state.count - action.amount,
+      };
+
+    case "SET_STEP":
+      return {
+        ...state,
+        step: action.step,
+      };
+
+    default:
+      return state;
+  }
+}
 
 function Counter() {
-    const [count, setCount] = useState(0);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { count } = state;
 
-    const handleClick = useCallback(() => {
-        console.log("click");
-    }, []);
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        gap: "10px",
+      }}
+    >
+      <p>Count: {count}</p>
 
-    const handleClickIncrement = useCallback(() => {
-        console.log("click");
+      <button onClick={() => dispatch({ type: "INCREMENT" })}>+</button>
 
-        setCount(prevCount => prevCount + 1);
-    }, []);
+      <button onClick={() => dispatch({ type: "DECREMENT" })}>-</button>
 
-    return (
-        <div>
-            <Button onClick={handleClick}>click 1111</Button>
+      <button onClick={() => dispatch({ type: "RESET" })}> Reset </button>
 
-            <p>Count: {count}</p>
+      <button onClick={() => dispatch({ type: "INCREMENT_BY", amount: 5 })}>
+        Increment by 5
+      </button>
 
-            <Button onClick={handleClickIncrement}>click 2222</Button>
-        </div>
-    );
+      <button
+        onClick={() =>
+          dispatch({
+            type: "DECREMENT_BY",
+            amount: 5,
+          })
+        }
+      >
+        Decrement by 5
+      </button>
+
+      <button onClick={() => dispatch({ type: "SET_STEP", step: 5 })}>
+        Set step to 5
+      </button>
+    </div>
+  );
 }
 
 export default Counter;
