@@ -18,6 +18,10 @@ import AddUsers from "./components/AddUsers/AddUsers.jsx";
 import FilteredUsers from "./components/FilteredUsers/FilteredUsers.jsx";
 import UserSearch from "./components/UserSearch/UserSearch.jsx";
 import UserUseReducer from "./components/UserUseReducer/UserUseReducer.jsx";
+import TestUseRef from "./components/UseRef/UseRef.jsx";
+import RefCounter from "./components/RefCounter/RefCounter.jsx";
+import RefInterval from "./components/RefInterval/RefInterval.jsx";
+import WrapperRefInterval from "./components/WrapperRefInterval/WrapperRefInterval.jsx";
 
 export default function Home() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -42,6 +46,9 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col gap-4">
+        <WrapperRefInterval />
+        <RefCounter />
+        <TestUseRef />
         <UserUseReducer />
         <Counter />
         <UserSearch />
