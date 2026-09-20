@@ -19,17 +19,11 @@ function App() {
           <main
             className={[
               "min-h-screen",
-              theme === "dark" ? "bg-slate-950 text-white" : "bg-slate-100 text-slate-900",
+              theme === "dark"
+                ? "bg-slate-950 text-white"
+                : "bg-slate-100 text-slate-900",
             ].join(" ")}
           >
-            <div className="mx-auto flex max-w-6xl items-center justify-center px-4 py-10">
-              <div className="rounded-2xl border border-slate-200 bg-white/80 px-6 py-4 shadow-sm backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/80">
-                <h1 className="text-4xl font-black tracking-tight text-slate-900 dark:text-white">
-                  Hello Tailwind
-                </h1>
-              </div>
-            </div>
-
             <nav className="mx-auto flex max-w-6xl items-center gap-3 px-4 pb-6 text-sm font-medium">
               <Link
                 className={[
