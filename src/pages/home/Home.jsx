@@ -18,6 +18,7 @@ import GetUsers from "./components/GetUsers/GetUsers.jsx";
 import AddUsers from "./components/AddUsers/AddUsers.jsx";
 import FilteredUsers from "./components/FilteredUsers/FilteredUsers.jsx";
 import UserSearch from "./components/UserSearch/UserSearch.jsx";
+import UserUseReducer from "./components/UserUseReducer/UserUseReducer.jsx";
 
 export default function Home() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -33,6 +34,9 @@ export default function Home() {
 
         <h1>Головна сторінка (Home)</h1>
         <div className={"test " + styles["home-components"]}>
+
+          <UserUseReducer />
+
 
           <Counter />
 

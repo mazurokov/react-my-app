@@ -18,6 +18,11 @@ function App() {
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
         <DefaultLayout>
           <main className="main">
+            <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center">
+              <h1 className="text-4xl font-bold">Hello Tailwind</h1>
+            </div>
+
+
             <nav className={"container " + styles.nav}>
               <Link to="/">Головна</Link>
               <Link to="/about">Про нас</Link>
