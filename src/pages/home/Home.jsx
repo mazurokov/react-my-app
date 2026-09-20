@@ -1,4 +1,3 @@
-import styles from "./Home.module.sass";
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 
@@ -22,49 +21,45 @@ import UserUseReducer from "./components/UserUseReducer/UserUseReducer.jsx";
 
 export default function Home() {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const isDark = theme === "dark";
 
   return (
-    <>
-      <section
-        className={
-          "container " + (theme === "dark" ? styles.dark : styles.light)
-        }
-      >
-        <button onClick={toggleTheme}>Toggle Theme</button>
+    <section
+      className={[
+        "mx-auto max-w-6xl px-4 py-8",
+        isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900",
+      ].join(" ")}
+    >
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <h1 className="text-3xl font-bold">Головна сторінка (Home)</h1>
+        <button
+          type="button"
+          onClick={toggleTheme}
+          className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-600"
+        >
+          Toggle Theme
+        </button>
+      </div>
 
-        <h1>Головна сторінка (Home)</h1>
-        <div className={"test " + styles["home-components"]}>
-
-          <UserUseReducer />
-
-
-          <Counter />
-
-
-          <UserSearch />
-
-          <FilteredUsers />
-
-
-          <AddUsers />
-
-          <GetUsers />
-
-          <NewTimer />
-
-          <NameInput />
-
-          <Users />
-          <User />
-          <MapList />
-          <Toolbar />
-          <UserProfile />
-          <Timer />
-          <WindowWidth />
-          <LoginForm />
-          <UserList />
-        </div>
-      </section>
-    </>
+      <div className="flex flex-col gap-4">
+        <UserUseReducer />
+        <Counter />
+        <UserSearch />
+        <FilteredUsers />
+        <AddUsers />
+        <GetUsers />
+        <NewTimer />
+        <NameInput />
+        <Users />
+        <User />
+        <MapList />
+        <Toolbar />
+        <UserProfile />
+        <Timer />
+        <WindowWidth />
+        <LoginForm />
+        <UserList />
+      </div>
+    </section>
   );
 }

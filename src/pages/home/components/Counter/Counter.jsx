@@ -53,40 +53,58 @@ function Counter() {
   const { count } = state;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        gap: "10px",
-      }}
-    >
-      <p>Count: {count}</p>
+    <div className="flex flex-col items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-5">
+      <p className="text-lg font-semibold text-slate-800">Count: {count}</p>
 
-      <button onClick={() => dispatch({ type: "INCREMENT" })}>+</button>
+      <div className="flex flex-wrap gap-2">
+        <button
+          type="button"
+          onClick={() => dispatch({ type: "INCREMENT" })}
+          className="rounded bg-blue-500 px-3 py-2 text-sm font-medium text-white transition hover:bg-blue-600"
+        >
+          +
+        </button>
 
-      <button onClick={() => dispatch({ type: "DECREMENT" })}>-</button>
+        <button
+          type="button"
+          onClick={() => dispatch({ type: "DECREMENT" })}
+          className="rounded bg-blue-500 px-3 py-2 text-sm font-medium text-white transition hover:bg-blue-600"
+        >
+          -
+        </button>
 
-      <button onClick={() => dispatch({ type: "RESET" })}> Reset </button>
+        <button
+          type="button"
+          onClick={() => dispatch({ type: "RESET" })}
+          className="rounded bg-slate-500 px-3 py-2 text-sm font-medium text-white transition hover:bg-slate-600"
+        >
+          Reset
+        </button>
 
-      <button onClick={() => dispatch({ type: "INCREMENT_BY", amount: 5 })}>
-        Increment by 5
-      </button>
+        <button
+          type="button"
+          onClick={() => dispatch({ type: "INCREMENT_BY", amount: 5 })}
+          className="rounded bg-emerald-500 px-3 py-2 text-sm font-medium text-white transition hover:bg-emerald-600"
+        >
+          Increment by 5
+        </button>
 
-      <button
-        onClick={() =>
-          dispatch({
-            type: "DECREMENT_BY",
-            amount: 5,
-          })
-        }
-      >
-        Decrement by 5
-      </button>
+        <button
+          type="button"
+          onClick={() => dispatch({ type: "DECREMENT_BY", amount: 5 })}
+          className="rounded bg-amber-500 px-3 py-2 text-sm font-medium text-white transition hover:bg-amber-600"
+        >
+          Decrement by 5
+        </button>
 
-      <button onClick={() => dispatch({ type: "SET_STEP", step: 5 })}>
-        Set step to 5
-      </button>
+        <button
+          type="button"
+          onClick={() => dispatch({ type: "SET_STEP", step: 5 })}
+          className="rounded bg-violet-500 px-3 py-2 text-sm font-medium text-white transition hover:bg-violet-600"
+        >
+          Set step to 5
+        </button>
+      </div>
     </div>
   );
 }

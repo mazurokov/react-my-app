@@ -15,19 +15,16 @@ function Users() {
 
   const createUser = async () => {
     try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: userName,
-            email: userEmail,
-          }),
+      const response = await fetch("https://jsonplaceholder.typicode.com/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          name: userName,
+          email: userEmail,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -73,9 +70,7 @@ function Users() {
 
   const getUsers = async () => {
     try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users",
-      );
+      const response = await fetch("https://jsonplaceholder.typicode.com/users");
 
       if (!response.ok) {
         throw new Error("Не вдалося отримати користувачів");
@@ -95,12 +90,9 @@ function Users() {
     setIsDeletingArray((prevDeleting) => [...prevDeleting, id]);
 
     try {
-      const response = await fetch(
-        `https://jsonplaceholder.typicode.com/users/${id}`,
-        {
-          method: "DELETE",
-        },
-      );
+      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+        method: "DELETE",
+      });
 
       if (!response.ok) {
         throw new Error("Не вдалося видалити користувача");
@@ -111,9 +103,7 @@ function Users() {
       console.error("Error deleting user:", error);
       setError(error.message);
     } finally {
-      setIsDeletingArray((prevDeleting) =>
-        prevDeleting.filter((userId) => userId !== id),
-      );
+      setIsDeletingArray((prevDeleting) => prevDeleting.filter((userId) => userId !== id));
     }
   };
 
@@ -125,19 +115,16 @@ function Users() {
 
   const saveUser = async (id) => {
     try {
-      const response = await fetch(
-        `https://jsonplaceholder.typicode.com/users/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: userName,
-            email: userEmail,
-          }),
+      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          name: userName,
+          email: userEmail,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Не вдалося оновити користувача");
@@ -145,9 +132,7 @@ function Users() {
 
       const updatedUser = await response.json();
 
-      setUsers((prevUsers) =>
-        prevUsers.map((user) => (user.id === id ? updatedUser : user)),
-      );
+      setUsers((prevUsers) => prevUsers.map((user) => (user.id === id ? updatedUser : user)));
       cancelEdit();
     } catch (error) {
       console.error("Error updating user:", error);
@@ -160,64 +145,80 @@ function Users() {
   }, []);
 
   return (
-    <div>
-      Users Component
-      <form onSubmit={handleSubmit}>
+    <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+      <h2 className="mb-4 text-xl font-semibold text-slate-800">Users Component</h2>
+
+      <form onSubmit={handleSubmit} className="mb-5 flex flex-wrap gap-3">
         <input
           type="text"
           name="userName"
           value={userName}
           onChange={(event) => setUserName(event.target.value)}
+          placeholder="Name"
+          className="w-48 rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
         />
         <input
           type="email"
           name="userEmail"
           value={userEmail}
           onChange={(event) => setUserEmail(event.target.value)}
+          placeholder="Email"
+          className="w-48 rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
         />
-        <button disabled={isLoadingPost || isLoadingEdit} type="submit">
+        <button
+          disabled={isLoadingPost || isLoadingEdit}
+          type="submit"
+          className="rounded bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-emerald-300"
+        >
           {editingUserId === null ? "Add User" : "Save User"}
         </button>
       </form>
+
       {isLoadingGet ? (
-        <p>Loading users...</p>
+        <p className="text-slate-600">Loading users...</p>
       ) : error ? (
-        <p>Error: {error}</p>
+        <p className="text-red-500">Error: {error}</p>
       ) : (
-        <ul>
+        <ul className="space-y-2">
           {users.map((user) => (
             <li
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
               key={user.id}
+              className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white p-3"
             >
-              <span>
+              <span className="text-slate-700">
                 {user.name} - {user.email}
               </span>
 
-              {editingUserId === user.id ? (
-                <>
-                  <button onClick={cancelEdit}>Cancel</button>
-                </>
-              ) : (
-                <>
-                  <button onClick={() => editUser(user.id)}>Edit</button>
-                </>
-              )}
+              <div className="flex items-center gap-2">
+                {editingUserId === user.id ? (
+                  <button
+                    type="button"
+                    onClick={cancelEdit}
+                    className="rounded bg-slate-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-slate-600"
+                  >
+                    Cancel
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => editUser(user.id)}
+                    className="rounded bg-sky-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-sky-600"
+                  >
+                    Edit
+                  </button>
+                )}
 
-              <button
+                <button
+                  type="button"
                   disabled={isDeletingArray.includes(user.id)}
                   onClick={() => {
                     deleteUser(user.id);
                   }}
-              >
-                {isDeletingArray.includes(user.id)
-                    ? "Deleting..."
-                    : "Delete"}
-              </button>
+                  className="rounded bg-red-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-red-600 disabled:cursor-not-allowed disabled:bg-red-300"
+                >
+                  {isDeletingArray.includes(user.id) ? "Deleting..." : "Delete"}
+                </button>
+              </div>
             </li>
           ))}
         </ul>
