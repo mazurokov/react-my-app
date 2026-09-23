@@ -20,7 +20,6 @@ import UserSearch from "./components/UserSearch/UserSearch.jsx";
 import UserUseReducer from "./components/UserUseReducer/UserUseReducer.jsx";
 import TestUseRef from "./components/UseRef/UseRef.jsx";
 import RefCounter from "./components/RefCounter/RefCounter.jsx";
-import RefInterval from "./components/RefInterval/RefInterval.jsx";
 import WrapperRefInterval from "./components/WrapperRefInterval/WrapperRefInterval.jsx";
 
 export default function Home() {
