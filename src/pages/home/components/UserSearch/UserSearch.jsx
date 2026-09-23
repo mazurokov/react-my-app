@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 function UserSearch() {
   const [search, setSearch] = useState("");
 
-  const [users, setUsers] = useState([
+  const [users] = useState([
     { id: 1, name: "Анна" },
     { id: 2, name: "Олег" },
     { id: 3, name: "Олена" },

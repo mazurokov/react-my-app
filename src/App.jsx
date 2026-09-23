@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Users from "./pages/users/Users";
@@ -14,6 +14,7 @@ import NotFound from "./pages/notFound/NotFound.jsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
 import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import Login from "./pages/login/Login.jsx";
+import TestForm from "./pages/form/Form.jsx";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,9 +39,9 @@ function App() {
           >
             <Navigation />
 
-            <button onClick={() => setIsAuthenticated((prev) => !prev)}>
-              Toggle Auth {isAuthenticated ? "Logout" : "Login"}
-            </button>
+            {/*<button onClick={() => setIsAuthenticated((prev) => !prev)}>*/}
+            {/*  Toggle Auth {isAuthenticated ? "Logout" : "Login"}*/}
+            {/*</button>*/}
 
             <Routes>
               <Route path="/" element={<Home />} />
@@ -63,6 +64,9 @@ function App() {
                 }
               />
               <Route path="/login" element={<Login onLogin={() => setIsAuthenticated(true)} />} />
+
+              <Route path="/form" element={<TestForm />} />
+
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

@@ -1,5 +1,5 @@
 import RefInterval from "../RefInterval/RefInterval.jsx";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function WrapperRefInterval() {
   const [show, setShow] = useState(true);
