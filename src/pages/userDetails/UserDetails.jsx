@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import {useNavigate, useParams, useLocation, Outlet, Link} from "react-router-dom";
 
 function UserDetails() {
   const navigate = useNavigate();
@@ -17,6 +17,13 @@ function UserDetails() {
     <div>
       <h1>User Details</h1>
       User ID: {id}
+
+      <Link to="profile">Profile</Link>
+      <Link to="posts">Posts</Link>
+
+      <Outlet />
+
+
       <button onClick={() => navigate(-1)}> Go Back</button>
       <button onClick={() => navigate("/")}>Go Home</button>
       <button

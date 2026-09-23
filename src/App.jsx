@@ -5,10 +5,19 @@ import About from "./pages/about/About";
 import Users from "./pages/users/Users";
 import DefaultLayout from "./layouts/default/DefaultLayout.jsx";
 import { ThemeContext } from "./context/ThemeContext";
-import UsersDetails from "./pages/usersDetails/usersDetails.jsx";
 import Navigation from "./components/Navigation/Navigation.jsx";
+import UserDetails from "./pages/userDetails/UserDetails.jsx";
+import UserProfile from "./pages/userDetails/children/userProfile/UserProfile.jsx";
+import UserPosts from "./pages/userDetails/children/userPosts/UserPosts.jsx";
+import UserOverview from "./pages/userDetails/UserOverview.jsx";
+import NotFound from "./pages/notFound/NotFound.jsx";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
+import Dashboard from "./pages/dashboard/Dashboard.jsx";
+import Login from "./pages/login/Login.jsx";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
@@ -29,11 +38,32 @@ function App() {
           >
             <Navigation />
 
+            <button onClick={() => setIsAuthenticated((prev) => !prev)}>
+              Toggle Auth {isAuthenticated ? "Logout" : "Login"}
+            </button>
+
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/users" element={<Users />} />
-              <Route path="/users/:id" element={<UsersDetails />} />
+              <Route path="/users/:id" element={<UserDetails />}>
+                <Route index element={<UserOverview />} />
+                <Route path="profile" element={<UserProfile />} />
+                <Route path="posts" element={<UserPosts />} />
+
+                <Route path="*" element={<p>User section not found</p>} />
+              </Route>
+
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/login" element={<Login onLogin={() => setIsAuthenticated(true)} />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
         </DefaultLayout>
