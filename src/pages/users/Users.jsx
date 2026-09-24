@@ -8,7 +8,7 @@ function Users() {
   ];
 
   return (
-    <div>
+    <section className="mx-auto max-w-6xl px-4 py-8 bg-white text-slate-900">
       <h1>Users</h1>
       <div className="flex gap-3">
         {users.map((user) => (
@@ -17,7 +17,7 @@ function Users() {
           </Link>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 
