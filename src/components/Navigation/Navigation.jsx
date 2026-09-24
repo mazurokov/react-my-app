@@ -16,9 +16,7 @@ function Navigation() {
               ? "bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white"
               : "bg-white text-slate-700 hover:bg-slate-200 hover:text-slate-900",
 
-            isActive
-              ? "font-bold text-blue-500"
-              : "",
+            isActive ? "font-bold text-blue-500" : "",
           ].join(" ")
         }
         to="/"
@@ -35,9 +33,7 @@ function Navigation() {
               ? "bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white"
               : "bg-white text-slate-700 hover:bg-slate-200 hover:text-slate-900",
 
-            isActive
-              ? "font-bold text-blue-500"
-              : "",
+            isActive ? "font-bold text-blue-500" : "",
           ].join(" ")
         }
         to="/about"
@@ -53,14 +49,29 @@ function Navigation() {
               ? "bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white"
               : "bg-white text-slate-700 hover:bg-slate-200 hover:text-slate-900",
 
-            isActive
-              ? "font-bold text-blue-500"
-              : "",
+            isActive ? "font-bold text-blue-500" : "",
           ].join(" ")
         }
         to="/users"
       >
         Користувачі
+      </NavLink>
+
+      <NavLink
+        className={({ isActive }) =>
+          [
+            "rounded-xl px-4 py-2 transition",
+
+            theme === "dark"
+              ? "bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white"
+              : "bg-white text-slate-700 hover:bg-slate-200 hover:text-slate-900",
+
+            isActive ? "font-bold text-blue-500" : "",
+          ].join(" ")
+        }
+        to="/form"
+      >
+        Form
       </NavLink>
     </nav>
   );

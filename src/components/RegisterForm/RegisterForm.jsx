@@ -138,20 +138,24 @@ function RegisterForm() {
           <button
             className="mt-3 rounded bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700"
             type="submit"
-            disabled={!isValid}
+            disabled={!isValid || isSubmitting}
           >
             {isSubmitting ? "Registering..." : "Register"}
           </button>
 
           <button
             className="mt-3 rounded bg-gray-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700"
-            type="button" onClick={() => reset({
-            name: "",
-            email: "",
-            age: "",
-            password: "",
-            confirmPassword: "",
-          })}>
+            type="button"
+            onClick={() =>
+              reset({
+                name: "",
+                email: "",
+                age: "",
+                password: "",
+                confirmPassword: "",
+              })
+            }
+          >
             Reset
           </button>
         </div>
