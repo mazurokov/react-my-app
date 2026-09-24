@@ -15,6 +15,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
 import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import Login from "./pages/login/Login.jsx";
 import TestForm from "./pages/form/Form.jsx";
+import UsersFetch from "./pages/usersFetch/UsersFetch.jsx";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -66,6 +67,8 @@ function App() {
               <Route path="/login" element={<Login onLogin={() => setIsAuthenticated(true)} />} />
 
               <Route path="/form" element={<TestForm />} />
+
+              <Route path="/users-fetch" element={<UsersFetch />} />
 
               <Route path="*" element={<NotFound />} />
             </Routes>
