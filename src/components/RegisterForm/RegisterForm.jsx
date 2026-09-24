@@ -1,19 +1,46 @@
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 function RegisterForm() {
+  const registerSchema = z
+    .object({
+      userName: z
+        .string()
+        .min(3, "Minimum 3 characters")
+        .max(20, "Maximum 20 characters")
+        .regex(/^[a-zA-Z0-9_]+$/, "Only letters, numbers and underscore"),
+
+      name: z.string().min(3, "Minimum 3 characters"),
+
+      email: z.string().email("Invalid email address"),
+
+      age: z.number().min(18, "Minimum age is 18"),
+
+      password: z.string().min(6, "Minimum 6 characters"),
+
+      confirmPassword: z.string().min(1, "Confirm Password is required"),
+    })
+    .refine(
+      (data) => {
+        return data.password === data.confirmPassword;
+      },
+      {
+        message: "Passwords do not match",
+        path: ["confirmPassword"],
+      },
+    );
+
   const {
     register,
     handleSubmit,
-    formState: {
-      errors,
-      isDirty,
-      isValid,
-      isSubmitting,
-    },
+    formState: { errors, isDirty, isValid, isSubmitting },
     reset,
   } = useForm({
+    resolver: zodResolver(registerSchema),
     mode: "onBlur",
     defaultValues: {
+      userName: "testUser",
       name: "Anna",
       email: "anna@test.com",
       age: 25,
@@ -40,14 +67,22 @@ function RegisterForm() {
             <input
               className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
               type="text"
+              placeholder="UserName"
+              {...register("userName")}
+            />
+            {errors.userName && (
+              <p className="mt-1 text-sm text-red-500">
+                {errors.userName.message}
+              </p>
+            )}
+          </div>
+
+          <div className="flex-1">
+            <input
+              className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
+              type="text"
               placeholder="Name"
-              {...register("name", {
-                required: "Name is required",
-                minLength: {
-                  value: 3,
-                  message: "Minimum 3 characters",
-                },
-              })}
+              {...register("name")}
             />
             {errors.name && (
               <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
@@ -59,13 +94,7 @@ function RegisterForm() {
               className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
               type="email"
               placeholder="Email"
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Invalid email address",
-                },
-              })}
+              {...register("email")}
             />
             {errors.email && (
               <p className="mt-1 text-sm text-red-500">
@@ -80,12 +109,7 @@ function RegisterForm() {
               type="number"
               placeholder="Age"
               {...register("age", {
-                required: "Age is required",
                 valueAsNumber: true,
-                min: {
-                  value: 18,
-                  message: "Minimum age is 18",
-                },
               })}
             />
             {errors.age && (
@@ -100,13 +124,7 @@ function RegisterForm() {
               className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
               type="password"
               placeholder="Password"
-              {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 6,
-                  message: "Minimum 6 characters",
-                },
-              })}
+              {...register("password")}
             />
             {errors.password && (
               <p className="mt-1 text-sm text-red-500">
@@ -120,11 +138,7 @@ function RegisterForm() {
               className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
               type="password"
               placeholder="Confirm Password"
-              {...register("confirmPassword", {
-                required: "Confirm Password is required",
-                validate: (value, formValues) =>
-                  value === formValues.password || "Passwords do not match",
-              })}
+              {...register("confirmPassword")}
             />
 
             {errors.confirmPassword && (
@@ -148,6 +162,7 @@ function RegisterForm() {
             type="button"
             onClick={() =>
               reset({
+                userName: "",
                 name: "",
                 email: "",
                 age: "",
