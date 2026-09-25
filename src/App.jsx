@@ -19,6 +19,8 @@ import TestFetch from "./pages/testFetch/TestFetch.jsx";
 import UsersFetch from "./pages/testFetch/children/UsersFetch/UsersFetch.jsx";
 import SearchFetch from "./pages/testFetch/children/SearchFetch/SearchFetch.jsx";
 import UsersWithHook from "./pages/testFetch/children/UsersWithHook/UsersWithHook.jsx";
+import QueryProvider from "./pages/queryProvider/QueryProvider.jsx";
+import UsersQuery from "./pages/queryProvider/chilldren/usersQuery/UsersQuery.jsx";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -75,6 +77,10 @@ function App() {
                 <Route path="users" element={<UsersFetch />} />
                 <Route path="search" element={<SearchFetch />} />
                 <Route path="users-with-hook" element={<UsersWithHook />} />
+              </Route>
+
+              <Route path="/query-provider" element={<QueryProvider />}>
+                <Route path="users-query" element={<UsersQuery />} />
               </Route>
 
               <Route path="*" element={<NotFound />} />

@@ -30,6 +30,10 @@ function Navigation() {
       to: "/fetch",
       label: "Fetch",
     },
+    {
+      to: "/query-provider",
+      label: "Query Provider",
+    },
   ];
 
   return (
