@@ -27,8 +27,8 @@ function Navigation() {
       label: "Form",
     },
     {
-      to: "/users-fetch",
-      label: "Users Fetch",
+      to: "/fetch",
+      label: "Fetch",
     },
   ];
 
