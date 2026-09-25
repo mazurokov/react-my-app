@@ -17,6 +17,8 @@ import Login from "./pages/login/Login.jsx";
 import TestForm from "./pages/form/Form.jsx";
 import TestFetch from "./pages/testFetch/TestFetch.jsx";
 import UsersFetch from "./pages/testFetch/children/UsersFetch/UsersFetch.jsx";
+import SearchFetch from "./pages/testFetch/children/SearchFetch/SearchFetch.jsx";
+import UsersWithHook from "./pages/testFetch/children/UsersWithHook/UsersWithHook.jsx";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -71,6 +73,8 @@ function App() {
 
               <Route path="/fetch" element={<TestFetch />}>
                 <Route path="users" element={<UsersFetch />} />
+                <Route path="search" element={<SearchFetch />} />
+                <Route path="users-with-hook" element={<UsersWithHook />} />
               </Route>
 
               <Route path="*" element={<NotFound />} />
