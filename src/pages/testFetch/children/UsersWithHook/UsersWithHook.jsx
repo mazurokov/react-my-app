@@ -1,9 +1,11 @@
 import useFetch from "../../hooks/useFetch.js";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 function UsersWithHook() {
 
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+
 
   const filteredUsers = (data) => {
     if (!data) return [];
@@ -18,8 +20,18 @@ function UsersWithHook() {
     loading,
     error,
   } = useFetch(
-    "https://jsonplaceholder.typicode.com/users"
+    `https://jsonplaceholder.typicode.com/users?search=${debouncedSearch}`
   );
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search]);
 
   return (
     <section>
@@ -42,6 +54,9 @@ function UsersWithHook() {
           className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
         />
       </div>
+
+      <p>Search: {search}</p>
+      <p>Debounced: {debouncedSearch}</p>
     </section>
   )
 }
