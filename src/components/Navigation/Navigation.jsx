@@ -51,6 +51,7 @@ function Navigation() {
               isActive ? "font-bold text-blue-500" : "",
             ].join(" ")
           }
+          key={link.to}
           to={link.to}
           end
         >
