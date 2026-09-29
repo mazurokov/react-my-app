@@ -1,46 +1,24 @@
-import {
-  fetchUsers,
-  deleteUser,
-  updateUser,
-  createUser,
-} from "../../../../services/usersApi";
-
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import useUsers from "../../hooks/useUsers";
 
 function UsersQuery() {
+  const {
+    users,
+    isPending,
+    isFetching,
+    error,
+    refetch,
+    createMutation,
+    deleteMutation,
+    updateMutation,
+  } = useUsers();
+
   const [name, setName] = useState("");
 
-  const queryClient = useQueryClient();
-
-
-
-  // const { data, isPending, isFetching, error, refetch } = useQuery({
-  //   queryKey: ["users"],
-  //   queryFn: fetchUsers,
-  //   staleTime: 5_000,
-  //   gcTime: 10_000,
-  // });
-
-  // console.log("test data", data);
-  // console.log("test isPending", isPending);
-  // console.log("test isFetching", isFetching);
-  // console.log("test error", error);
-
-  console.log("mutation data:", createMutation.data);
-
-  /** @DELETE */
-
-
-
-  /** @UPDATE */
+  console.log("users:", users);
 
   const [editingUserId, setEditingUserId] = useState(null);
   const [editingName, setEditingName] = useState("");
-
-
-
-
 
   const isUpdatingThisUser = (userId) =>
     updateMutation.isPending && updateMutation.variables?.id === userId;
@@ -58,13 +36,12 @@ function UsersQuery() {
         )}
 
         <div className="space-y-2">
-          {data &&
-            data.map((user) => (
+          {users &&
+            users.map((user) => (
               <div
                 key={user.id}
                 className="flex items-center justify-between gap-3 rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700 shadow-sm"
               >
-
                 {editingUserId === user.id ? (
                   <>
                     <input
@@ -76,10 +53,18 @@ function UsersQuery() {
                     <button
                       disabled={isUpdatingThisUser(user.id)}
                       onClick={() =>
-                        updateMutation.mutate({
-                          id: user.id,
-                          name: editingName,
-                        })
+                        updateMutation.mutate(
+                          {
+                            id: user.id,
+                            name: editingName,
+                          },
+                          {
+                            onSuccess: () => {
+                              setEditingUserId(null);
+                              setEditingName("");
+                            },
+                          },
+                        )
                       }
                     >
                       {isUpdatingThisUser(user.id) ? "Saving..." : "Save"}
@@ -142,9 +127,16 @@ function UsersQuery() {
           onSubmit={(e) => {
             e.preventDefault();
 
-            createMutation.mutate({
-              name,
-            });
+            createMutation.mutate(
+              {
+                name,
+              },
+              {
+                onSuccess: () => {
+                  setName("");
+                },
+              },
+            );
           }}
         >
           <label className="mb-2 block text-sm font-medium text-gray-700">
@@ -159,7 +151,7 @@ function UsersQuery() {
 
           <button
             type="submit"
-            className="rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:bg-green-300"
+            className="rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-700 disabled:cursor-not-allowed"
             disabled={createMutation.isPending}
           >
             {createMutation.isPending ? "Creating..." : "Create user"}

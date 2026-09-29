@@ -1,8 +1,19 @@
-import {useMutation, useQuery} from "@tanstack/react-query";
-import {deleteUser, fetchUsers} from "../../../services/usersApi.js";
-
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  deleteUser,
+  fetchUsers,
+  updateUser,
+  createUser,
+} from "../../../services/usersApi.js";
 
 function useUsers() {
+  const queryClient = useQueryClient();
+  const invalidateQueries = () => {
+    queryClient.invalidateQueries({
+      queryKey: ["users"],
+    });
+  };
+
   const { data, isPending, isFetching, error, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: fetchUsers,
@@ -12,44 +23,29 @@ function useUsers() {
 
   const updateMutation = useMutation({
     mutationFn: updateUser,
-
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["users"],
-      });
-
-      setEditingUserId(null);
-      setEditingName("");
-    },
+    onSuccess: invalidateQueries,
   });
 
   const createMutation = useMutation({
     mutationFn: createUser,
-
-    onSuccess: () => {
-      setName("");
-
-      queryClient.invalidateQueries({
-        queryKey: ["users"],
-      });
-    },
+    onSuccess: invalidateQueries,
   });
 
   const deleteMutation = useMutation({
     mutationFn: deleteUser,
 
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["users"],
-      });
-    },
+    onSuccess: invalidateQueries,
   });
 
   return {
-    data,
+    users: data ?? [],
     isPending,
+    isFetching,
+    error,
+    refetch,
     createMutation,
     deleteMutation,
     updateMutation,
   };
 }
+export default useUsers;
