@@ -10,10 +10,7 @@ function UserItem({
   isEditing,
 }) {
   return (
-    <div
-      key={user?.id}
-      className="flex items-center justify-between gap-3 rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700 shadow-sm"
-    >
+    <div className="flex items-center justify-between gap-3 rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700 shadow-sm">
       {isEditing ? (
         <>
           <input
@@ -32,13 +29,7 @@ function UserItem({
             {user?.name}
           </span>
 
-          <button
-            onClick={() => {
-              onEdit();
-            }}
-          >
-            Edit
-          </button>
+          <button onClick={onEdit}>Edit</button>
         </>
       )}
 
@@ -46,7 +37,7 @@ function UserItem({
         type="button"
         className="inline-flex items-center justify-center rounded-md border border-red-200 bg-red-50 px-2.5 py-1.5 text-xs font-medium text-red-700 transition hover:bg-red-100 disabled:cursor-not-allowed disabled:opacity-60"
         disabled={isDeleting}
-        onClick={() => onDelete()}
+        onClick={onDelete}
       >
         {isDeleting ? "Deleting..." : "Delete"}
       </button>

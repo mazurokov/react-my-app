@@ -1,6 +1,8 @@
 import { useState } from "react";
 import useUsers from "../../hooks/useUsers";
 import UserItem from "./components/UserItem.jsx";
+import UserForm from "./components/UserForm.jsx";
+import Notice from "../../../../components/Notice/Notice.jsx";
 
 function UsersQuery() {
   const {
@@ -22,14 +24,11 @@ function UsersQuery() {
   return (
     <div className="mx-auto max-w-2xl space-y-6 p-6">
       <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-        {isPending && <p className="text-sm text-gray-500">Loading...</p>}
-        <p className="mb-3 text-sm text-gray-600">
-          isFetching: {String(isFetching)}
-        </p>
+        {isPending && <Notice type="info">Loading...</Notice>}
 
-        {error && (
-          <p className="text-sm text-red-600">Error: {error.message}</p>
-        )}
+        {isFetching && <Notice type="info">Refreshing users...</Notice>}
+
+        {error && <Notice type="error">Error: {error.message}</Notice>}
 
         <div className="space-y-2">
           {users.map((user) => (
@@ -70,9 +69,7 @@ function UsersQuery() {
         </div>
 
         {deleteMutation.isError && (
-          <p className="text-sm text-red-600">
-            Error: {deleteMutation.error.message}
-          </p>
+          <Notice type="error">Error: {deleteMutation.error.message}</Notice>
         )}
 
         <button
@@ -86,8 +83,10 @@ function UsersQuery() {
       </div>
 
       <div className="rounded-xl border border-gray-200 bg-gray-50 p-5 shadow-sm">
-        <form
-          className="mt-4 space-y-3"
+        <UserForm
+          name={name}
+          onNameChange={setName}
+          isPending={createMutation.isPending}
           onSubmit={(e) => {
             e.preventDefault();
 
@@ -102,37 +101,15 @@ function UsersQuery() {
               },
             );
           }}
-        >
-          <label className="mb-2 block text-sm font-medium text-gray-700">
-            Name
-          </label>
-
-          <input
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-
-          <button
-            type="submit"
-            className="rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-700 disabled:cursor-not-allowed"
-            disabled={createMutation.isPending}
-          >
-            {createMutation.isPending ? "Creating..." : "Create user"}
-          </button>
-        </form>
+        />
       </div>
 
       {createMutation.isError && (
-        <p className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">
-          Error: {createMutation.error.message}
-        </p>
+        <Notice type="error">Error: {createMutation.error.message}</Notice>
       )}
 
       {createMutation.isSuccess && (
-        <p className="rounded-md border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-700">
-          User created!
-        </p>
+        <Notice type="success">User created!</Notice>
       )}
     </div>
   );
