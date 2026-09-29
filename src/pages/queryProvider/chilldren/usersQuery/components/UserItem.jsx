@@ -1,3 +1,5 @@
+import CommonButton from "../../../../../components/CommonButton/CommonButton.jsx";
+
 function UserItem({
   user,
   editingName,
@@ -19,9 +21,14 @@ function UserItem({
             onChange={(e) => onEditingNameChange(e.target.value)}
           />
 
-          <button disabled={isSaving} onClick={onSave}>
+          <CommonButton
+            type="button"
+            variant="primary"
+            disabled={isSaving}
+            onClick={onSave}
+          >
             {isSaving ? "Saving..." : "Save"}
-          </button>
+          </CommonButton>
         </>
       ) : (
         <>
@@ -29,18 +36,20 @@ function UserItem({
             {user?.name}
           </span>
 
-          <button onClick={onEdit}>Edit</button>
+          <CommonButton type="button" variant="outline" onClick={onEdit}>
+            Edit
+          </CommonButton>
         </>
       )}
 
-      <button
-        type="button"
-        className="inline-flex items-center justify-center rounded-md border border-red-200 bg-red-50 px-2.5 py-1.5 text-xs font-medium text-red-700 transition hover:bg-red-100 disabled:cursor-not-allowed disabled:opacity-60"
-        disabled={isDeleting}
+      <CommonButton
         onClick={onDelete}
+        disabled={isDeleting}
+        type="button"
+        variant="danger"
       >
         {isDeleting ? "Deleting..." : "Delete"}
-      </button>
+      </CommonButton>
     </div>
   );
 }

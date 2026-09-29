@@ -3,6 +3,7 @@ import useUsers from "../../hooks/useUsers";
 import UserItem from "./components/UserItem.jsx";
 import UserForm from "./components/UserForm.jsx";
 import Notice from "../../../../components/Notice/Notice.jsx";
+import CommonButton from "../../../../components/CommonButton/CommonButton.jsx";
 
 function UsersQuery() {
   const {
@@ -72,14 +73,15 @@ function UsersQuery() {
           <Notice type="error">Error: {deleteMutation.error.message}</Notice>
         )}
 
-        <button
-          type="button"
-          className="mt-4 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
-          disabled={isFetching}
+        <CommonButton
           onClick={refetch}
+          disabled={isFetching}
+          type="button"
+          variant="primary"
+          className="mt-4"
         >
           {isFetching ? "Refreshing..." : "Refresh"}
-        </button>
+        </CommonButton>
       </div>
 
       <div className="rounded-xl border border-gray-200 bg-gray-50 p-5 shadow-sm">
