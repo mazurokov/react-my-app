@@ -45,8 +45,8 @@ function UserItem({
       <button
         type="button"
         className="inline-flex items-center justify-center rounded-md border border-red-200 bg-red-50 px-2.5 py-1.5 text-xs font-medium text-red-700 transition hover:bg-red-100 disabled:cursor-not-allowed disabled:opacity-60"
-        disabled={isSaving}
-        onClick={() => onDelete(user.id)}
+        disabled={isDeleting}
+        onClick={() => onDelete()}
       >
         {isDeleting ? "Deleting..." : "Delete"}
       </button>
