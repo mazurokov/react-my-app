@@ -16,8 +16,6 @@ function UsersQuery() {
 
   const [name, setName] = useState("");
 
-  console.log("users:", users);
-
   const [editingUserId, setEditingUserId] = useState(null);
   const [editingName, setEditingName] = useState("");
 
@@ -38,12 +36,35 @@ function UsersQuery() {
             <UserItem
               key={user.id}
               user={user}
-              editingUserId={editingUserId}
+              isEditing={editingUserId === user.id}
               editingName={editingName}
-              setEditingUserId={setEditingUserId}
-              setEditingName={setEditingName}
-              updateMutation={updateMutation}
-              deleteMutation={deleteMutation}
+              onEditingNameChange={setEditingName}
+              onEdit={() => {
+                setEditingUserId(user.id);
+                setEditingName(user.name);
+              }}
+              onSave={() => {
+                updateMutation.mutate(
+                  {
+                    id: user.id,
+                    name: editingName,
+                  },
+                  {
+                    onSuccess: () => {
+                      setEditingUserId(null);
+                      setEditingName("");
+                    },
+                  },
+                );
+              }}
+              onDelete={() => deleteMutation.mutate(user.id)}
+              isSaving={
+                updateMutation.isPending &&
+                updateMutation.variables?.id === user.id
+              }
+              isDeleting={
+                deleteMutation.isPending && deleteMutation.variables === user.id
+              }
             />
           ))}
         </div>
