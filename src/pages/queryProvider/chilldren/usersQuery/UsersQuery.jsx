@@ -1,3 +1,10 @@
+import {
+  fetchUsers,
+  deleteUser,
+  updateUser,
+  createUser,
+} from "../../../../services/usersApi";
+
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 
@@ -6,121 +13,34 @@ function UsersQuery() {
 
   const queryClient = useQueryClient();
 
-  const createUser = async (newUser) => {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUser),
-    });
 
-    if (!response.ok) {
-      throw new Error("Failed to create user");
-    }
 
-    return response.json();
-  };
-
-  const mutation = useMutation({
-    mutationFn: createUser,
-
-    onSuccess: () => {
-      setName("");
-
-      queryClient.invalidateQueries({
-        queryKey: ["users"],
-      });
-    },
-  });
-
-  const fetchUsers = async () => {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users");
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch users");
-    }
-
-    return response.json();
-  };
-
-  const { data, isPending, isFetching, error, refetch } = useQuery({
-    queryKey: ["users"],
-    queryFn: fetchUsers,
-    staleTime: 5_000,
-    gcTime: 10_000,
-  });
+  // const { data, isPending, isFetching, error, refetch } = useQuery({
+  //   queryKey: ["users"],
+  //   queryFn: fetchUsers,
+  //   staleTime: 5_000,
+  //   gcTime: 10_000,
+  // });
 
   // console.log("test data", data);
   // console.log("test isPending", isPending);
   // console.log("test isFetching", isFetching);
   // console.log("test error", error);
 
-  console.log("mutation data:", mutation.data);
+  console.log("mutation data:", createMutation.data);
 
   /** @DELETE */
 
-  const deleteUser = async (id) => {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/users/${id}`,
-      {
-        method: "DELETE",
-      },
-    );
 
-    if (!response.ok) {
-      throw new Error("Failed to delete user");
-    }
-
-    return response.json();
-  };
-
-  const deleteMutation = useMutation({
-    mutationFn: deleteUser,
-
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["users"],
-      });
-    },
-  });
 
   /** @UPDATE */
 
   const [editingUserId, setEditingUserId] = useState(null);
   const [editingName, setEditingName] = useState("");
 
-  const updateUser = async ({ id, name }) => {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/users/${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name }),
-      }
-    );
 
-    if (!response.ok) {
-      throw new Error("Failed to update user");
-    }
 
-    return response.json();
-  };
 
-  const updateMutation = useMutation({
-    mutationFn: updateUser,
-
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["users"],
-      });
-
-      setEditingUserId(null);
-      setEditingName("");
-    },
-  });
 
   const isUpdatingThisUser = (userId) =>
     updateMutation.isPending && updateMutation.variables?.id === userId;
@@ -222,7 +142,7 @@ function UsersQuery() {
           onSubmit={(e) => {
             e.preventDefault();
 
-            mutation.mutate({
+            createMutation.mutate({
               name,
             });
           }}
@@ -240,20 +160,20 @@ function UsersQuery() {
           <button
             type="submit"
             className="rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:bg-green-300"
-            disabled={mutation.isPending}
+            disabled={createMutation.isPending}
           >
-            {mutation.isPending ? "Creating..." : "Create user"}
+            {createMutation.isPending ? "Creating..." : "Create user"}
           </button>
         </form>
       </div>
 
-      {mutation.isError && (
+      {createMutation.isError && (
         <p className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">
-          {mutation.error.message}
+          Error: {createMutation.error.message}
         </p>
       )}
 
-      {mutation.isSuccess && (
+      {createMutation.isSuccess && (
         <p className="rounded-md border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-700">
           User created!
         </p>
