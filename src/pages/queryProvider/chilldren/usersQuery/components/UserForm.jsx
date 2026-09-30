@@ -1,3 +1,5 @@
+import CommonButton from "../../../../../components/CommonButton/CommonButton.jsx";
+
 function UserForm({ isPending, onSubmit, name, onNameChange }) {
   return (
     <form className="mt-4 space-y-3" onSubmit={onSubmit}>
@@ -11,13 +13,20 @@ function UserForm({ isPending, onSubmit, name, onNameChange }) {
         onChange={(e) => onNameChange(e.target.value)}
       />
 
-      <button
+      {/*<button*/}
+      {/*  type="submit"*/}
+      {/*  className="rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-700 disabled:cursor-not-allowed"*/}
+      {/*  disabled={isPending}*/}
+      {/*>*/}
+      {/*  {isPending ? "Creating..." : "Create user"}*/}
+      {/*</button>*/}
+
+      <CommonButton
         type="submit"
-        className="rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-700 disabled:cursor-not-allowed"
-        disabled={isPending}
+        variant="success"
       >
         {isPending ? "Creating..." : "Create user"}
-      </button>
+      </CommonButton>
     </form>
   );
 }
