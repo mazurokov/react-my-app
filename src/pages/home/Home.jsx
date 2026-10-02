@@ -36,7 +36,7 @@ export default function Home() {
       ].join(" ")}
     >
       <div className="mb-6 flex items-center justify-between gap-4 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-violet-500/10 backdrop-blur-xl">
-        <h1 className="text-3xl font-bold tracking-tight">Головна сторінка (Home)</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-white">Головна сторінка (Home)</h1>
         <button
           type="button"
           onClick={toggleTheme}

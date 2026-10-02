@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 
 function GetUsers() {
   const [users, setUsers] = useState([]);
-
   const [loading, setLoading] = useState(true);
-
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -30,15 +28,17 @@ function GetUsers() {
   let content;
 
   if (loading) {
-    content = <p>Loading...</p>;
+    content = <p className="text-zinc-400">Loading...</p>;
   } else if (error) {
-    content = <p>{error}</p>;
+    content = <p className="text-red-400">{error}</p>;
   } else {
     content = (
-      <ul>
-        {users.map((user) => {
-          return <li key={user.id}>{user.name}</li>;
-        })}
+      <ul className="space-y-2 text-zinc-300">
+        {users.map((user) => (
+          <li key={user.id} className="rounded-lg border border-white/10 bg-zinc-950/60 px-3 py-2 text-white">
+            {user.name}
+          </li>
+        ))}
       </ul>
     );
   }
