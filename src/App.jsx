@@ -39,7 +39,7 @@ function App() {
         <DefaultLayout>
           <main
             className={[
-              "relative min-h-screen overflow-hidden bg-zinc-950 text-white",
+                "relative overflow-hidden bg-zinc-950 text-white",
               theme === "dark" ? "" : "bg-zinc-100 text-zinc-900",
             ].join(" ")}
             style={
