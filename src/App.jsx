@@ -39,7 +39,7 @@ function App() {
         <DefaultLayout>
           <main
             className={[
-                "relative overflow-hidden bg-zinc-950 text-white",
+                "relative bg-zinc-950 text-white",
               theme === "dark" ? "" : "bg-zinc-100 text-zinc-900",
             ].join(" ")}
             style={
@@ -51,7 +51,7 @@ function App() {
                 : undefined
             }
           >
-            <div className="pointer-events-none absolute inset-0 opacity-30">
+            <div className="pointer-events-none overflow-hidden absolute inset-0 opacity-30">
               <div className="absolute left-1/2 top-[-180px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-violet-600/20 blur-[120px]" />
               <div className="absolute bottom-[-180px] right-[-100px] h-[400px] w-[400px] rounded-full bg-blue-600/15 blur-[120px]" />
               <div

@@ -1,12 +1,16 @@
 //@use "./components/reset"
 @use "./abstracts"
 
+html
+  overflow-x: hidden
+
 html, body, #root
   height: 100%
 
 #root
   display: flex
   flex-direction: column
+  justify-content: space-between
 
   >main
     flex: 1
