@@ -27,7 +27,7 @@ import Counter from "./pages/zustand/children/counter/Counter.jsx";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));

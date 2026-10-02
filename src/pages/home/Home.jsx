@@ -43,6 +43,8 @@ export default function Home() {
           className="rounded-xl bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110"
         >
           Toggle Theme
+
+          {theme}
         </button>
       </div>
 
