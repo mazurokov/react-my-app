@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 function SearchFetch() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
 
-  const fetchUsers = async ({ signal, searchValue } = {}) => {
+  const fetchUsers = useCallback(async ({ signal, searchValue } = {}) => {
     try {
       const response = await fetch("https://jsonplaceholder.typicode.com/users", { signal });
 
@@ -25,13 +25,15 @@ function SearchFetch() {
         console.error("Fetch error:", error);
       }
     }
-  };
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
-    fetchUsers({ signal: controller.signal, searchValue: search });
+    Promise.resolve().then(() =>
+      fetchUsers({ signal: controller.signal, searchValue: search }),
+    );
     return () => controller.abort();
-  }, [search]);
+  }, [search, fetchUsers]);
 
   return (
     <section className="rounded-2xl border border-white/10 bg-zinc-950/30 p-4">

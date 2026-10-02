@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 function TestFetch() {
   const [users, setUsers] = useState([]);
 
-  const fetchUsers = async ({ signal }) => {
+  const fetchUsers = useCallback(async ({ signal }) => {
     try {
       const response = await fetch("https://jsonplaceholder.typicode.com/users", { signal });
 
@@ -20,17 +20,17 @@ function TestFetch() {
         console.error("Fetch error:", error);
       }
     }
-  };
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
 
-    fetchUsers({ signal: controller.signal });
+    Promise.resolve().then(() => fetchUsers({ signal: controller.signal }));
 
     return () => {
       controller.abort();
     };
-  }, []);
+  }, [fetchUsers]);
 
   return (
     <section className="rounded-2xl border border-white/10 bg-zinc-950/30 p-4">

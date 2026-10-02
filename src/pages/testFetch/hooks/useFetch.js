@@ -1,11 +1,11 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState, useCallback } from "react";
 
 function useFetch(url) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const localFetch = async ({ signal } = {}) => {
+  const localFetch = useCallback(async ({ signal } = {}) => {
     setLoading(true);
     setError(null);
 
@@ -28,13 +28,13 @@ function useFetch(url) {
       }
     }
     setLoading(false);
-  }
+  }, [url]);
 
   useEffect(() => {
     const controller = new AbortController();
-    localFetch({ signal: controller.signal });
+    Promise.resolve().then(() => localFetch({ signal: controller.signal }));
     return () => controller.abort();
-  }, [url]);
+  }, [localFetch]);
 
   return {
     data,
