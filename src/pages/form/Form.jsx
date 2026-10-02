@@ -1,4 +1,4 @@
-import RegisterForm from "../../components/RegisterForm/RegisterForm.jsx";
+import RegisterForm from "@components/RegisterForm/RegisterForm.jsx";
 
 function TestForm() {
   return (

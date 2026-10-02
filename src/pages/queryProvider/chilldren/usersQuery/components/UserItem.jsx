@@ -1,4 +1,4 @@
-import CommonButton from "../../../../../components/CommonButton/CommonButton.jsx";
+import CommonButton from "@components/CommonButton/CommonButton.jsx";
 
 function UserItem({
   user,

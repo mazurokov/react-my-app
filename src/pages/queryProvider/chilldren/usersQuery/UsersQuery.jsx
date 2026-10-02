@@ -1,9 +1,9 @@
 import { useState } from "react";
-import useUsers from "../../hooks/useUsers";
-import UserItem from "./components/UserItem.jsx";
-import UserForm from "./components/UserForm.jsx";
-import Notice from "../../../../components/Notice/Notice.jsx";
-import CommonButton from "../../../../components/CommonButton/CommonButton.jsx";
+import useUsers from "@pages/queryProvider/hooks/useUsers";
+import UserItem from "@pages/queryProvider/chilldren/usersQuery/components/UserItem.jsx";
+import UserForm from "@pages/queryProvider/chilldren/usersQuery/components/UserForm.jsx";
+import Notice from "@components/Notice/Notice.jsx";
+import CommonButton from "@components/CommonButton/CommonButton.jsx";
 
 function UsersQuery() {
   const {

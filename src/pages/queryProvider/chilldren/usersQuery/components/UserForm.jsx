@@ -1,5 +1,5 @@
-import CommonButton from "../../../../../components/CommonButton/CommonButton.jsx";
-import CommonField from "../../../../../components/CommonField/CommonField.jsx";
+import CommonButton from "@components/CommonButton/CommonButton.jsx";
+import CommonField from "@components/CommonField/CommonField.jsx";
 
 function UserForm({ isPending, onSubmit, name, onNameChange }) {
   return (

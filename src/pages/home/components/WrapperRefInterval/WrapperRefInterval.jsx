@@ -1,4 +1,4 @@
-import RefInterval from "../RefInterval/RefInterval.jsx";
+import RefInterval from "@pages/home/components/RefInterval/RefInterval.jsx";
 import { useState } from "react";
 
 function WrapperRefInterval() {

@@ -4,7 +4,7 @@ import {
   fetchUsers,
   updateUser,
   createUser,
-} from "../../../services/usersApi.js";
+} from "@services/usersApi.js";
 
 function useUsers() {
   const queryClient = useQueryClient();

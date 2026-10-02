@@ -1,4 +1,4 @@
-import useFetch from "../../hooks/useFetch.js";
+import useFetch from "@pages/testFetch/hooks/useFetch.js";
 import { useEffect, useState } from "react";
 
 function UsersWithHook() {
