@@ -21,6 +21,8 @@ import SearchFetch from "./pages/testFetch/children/SearchFetch/SearchFetch.jsx"
 import UsersWithHook from "./pages/testFetch/children/UsersWithHook/UsersWithHook.jsx";
 import QueryProvider from "./pages/queryProvider/QueryProvider.jsx";
 import UsersQuery from "./pages/queryProvider/chilldren/usersQuery/UsersQuery.jsx";
+import ZustandPage from "./pages/zustand/ZustandPage.jsx";
+import Counter from "./pages/zustand/children/counter/Counter.jsx";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -81,6 +83,10 @@ function App() {
 
               <Route path="/query-provider" element={<QueryProvider />}>
                 <Route path="users-query" element={<UsersQuery />} />
+              </Route>
+
+              <Route path="/zustand" element={<ZustandPage />}>
+                <Route path="counter" element={<Counter />} />
               </Route>
 
               <Route path="*" element={<NotFound />} />

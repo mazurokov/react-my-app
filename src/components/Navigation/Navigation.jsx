@@ -34,6 +34,10 @@ function Navigation() {
       to: "/query-provider",
       label: "Query Provider",
     },
+    {
+      to: "/zustand",
+      label: "Zustand",
+    },
   ];
 
   return (
