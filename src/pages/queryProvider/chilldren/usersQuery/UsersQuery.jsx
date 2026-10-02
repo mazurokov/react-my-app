@@ -24,7 +24,7 @@ function UsersQuery() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-6 p-6">
-      <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+      <div className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-violet-500/10 backdrop-blur-xl">
         {isPending && <Notice type="info">Loading...</Notice>}
 
         {isFetching && <Notice type="info">Refreshing users...</Notice>}
@@ -84,7 +84,7 @@ function UsersQuery() {
         </CommonButton>
       </div>
 
-      <div className="rounded-xl border border-gray-200 bg-gray-50 p-5 shadow-sm">
+      <div className="rounded-3xl border border-white/10 bg-zinc-950/30 p-5 shadow-2xl shadow-violet-500/10 backdrop-blur-xl">
         <UserForm
           name={name}
           onNameChange={setName}
@@ -110,9 +110,7 @@ function UsersQuery() {
         <Notice type="error">Error: {createMutation.error.message}</Notice>
       )}
 
-      {createMutation.isSuccess && (
-        <Notice type="success">User created!</Notice>
-      )}
+      {createMutation.isSuccess && <Notice type="success">User created!</Notice>}
     </div>
   );
 }

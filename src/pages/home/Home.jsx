@@ -30,15 +30,17 @@ export default function Home() {
     <section
       className={[
         "mx-auto max-w-6xl px-4 py-8",
-        isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900",
+        isDark
+          ? "text-white"
+          : "text-zinc-900",
       ].join(" ")}
     >
-      <div className="mb-6 flex items-center justify-between gap-4">
-        <h1 className="text-3xl font-bold">Головна сторінка (Home)</h1>
+      <div className="mb-6 flex items-center justify-between gap-4 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-violet-500/10 backdrop-blur-xl">
+        <h1 className="text-3xl font-bold tracking-tight">Головна сторінка (Home)</h1>
         <button
           type="button"
           onClick={toggleTheme}
-          className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-600"
+          className="rounded-xl bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110"
         >
           Toggle Theme
         </button>

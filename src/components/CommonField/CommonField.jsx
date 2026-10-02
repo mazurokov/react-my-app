@@ -10,9 +10,9 @@ function CommonField({
   return (
     <div className="w-full space-y-1.5">
       {label && (
-        <label htmlFor={id} className="block text-sm font-medium text-gray-700">
+        <label htmlFor={id} className="block text-sm font-medium text-zinc-300">
           {label}
-          {required && <span className="ml-1 text-red-500">*</span>}
+          {required && <span className="ml-1 text-red-400">*</span>}
         </label>
       )}
 
@@ -21,38 +21,38 @@ function CommonField({
         {...props}
         className={`
           w-full
-          rounded-lg
+          rounded-xl
           border
-          bg-white
+          bg-zinc-950/60
           px-3.5 py-2.5
-          text-sm text-gray-900
+          text-sm text-white
           shadow-sm
           outline-none
           transition-all
           duration-200
 
-          placeholder:text-gray-400
+          placeholder:text-zinc-500
 
-          hover:border-gray-400
+          hover:border-white/20
 
           disabled:cursor-not-allowed
-          disabled:bg-gray-100
-          disabled:text-gray-500
+          disabled:bg-zinc-900
+          disabled:text-zinc-500
           disabled:opacity-70
 
           ${
             error
               ? `
-                border-red-500
-                focus:border-red-500
+                border-red-400/60
+                focus:border-red-400
                 focus:ring-4
-                focus:ring-red-500/10
+                focus:ring-red-500/15
               `
               : `
-                border-gray-300
-                focus:border-blue-500
+                border-white/10
+                focus:border-violet-400
                 focus:ring-4
-                focus:ring-blue-500/10
+                focus:ring-violet-500/15
               `
           }
 
@@ -61,9 +61,9 @@ function CommonField({
       />
 
       {error ? (
-        <p className="text-xs text-red-500">{error}</p>
+        <p className="text-xs text-red-400">{error}</p>
       ) : helperText ? (
-        <p className="text-xs text-gray-500">{helperText}</p>
+        <p className="text-xs text-zinc-400">{helperText}</p>
       ) : null}
     </div>
   );

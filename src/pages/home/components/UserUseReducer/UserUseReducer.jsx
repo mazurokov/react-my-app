@@ -132,22 +132,22 @@ function User() {
   };
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+    <div className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-violet-500/10 backdrop-blur-xl">
       <div className="mb-3">
-        {state.loading && <p className="text-slate-600">Loading...</p>}
+        {state.loading && <p className="text-zinc-300">Loading...</p>}
         <div className="flex flex-col gap-2">
           {state.users.map((user) => (
             <div
               key={user.id}
-              className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white p-3"
+              className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-zinc-950/30 p-3"
             >
-              <span className="text-slate-700">{user.name}</span>
+              <span className="text-zinc-200">{user.name}</span>
 
               <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => dispatch({ type: "DELETE_USER", id: user.id })}
-                  className="rounded bg-red-500 px-2.5 py-1.5 text-xs font-medium text-white transition hover:bg-red-600"
+                  className="rounded-xl bg-red-500/80 px-2.5 py-1.5 text-xs font-medium text-white transition hover:bg-red-500"
                 >
                   Delete User with ID {user.id}
                 </button>
@@ -161,7 +161,7 @@ function User() {
                       name: "UPDATED",
                     })
                   }
-                  className="rounded bg-sky-500 px-2.5 py-1.5 text-xs font-medium text-white transition hover:bg-sky-600"
+                  className="rounded-xl bg-sky-500/80 px-2.5 py-1.5 text-xs font-medium text-white transition hover:bg-sky-500"
                 >
                   Update
                 </button>
@@ -170,7 +170,7 @@ function User() {
                   <button
                     type="button"
                     onClick={cancelEdit}
-                    className="rounded bg-slate-500 px-2.5 py-1.5 text-xs font-medium text-white transition hover:bg-slate-600"
+                    className="rounded-xl border border-white/10 bg-white/5 px-2.5 py-1.5 text-xs font-medium text-zinc-200 transition hover:border-white/20 hover:bg-white/10"
                   >
                     Cancel
                   </button>
@@ -178,7 +178,7 @@ function User() {
                   <button
                     type="button"
                     onClick={() => editingUser(user.id)}
-                    className="rounded bg-violet-500 px-2.5 py-1.5 text-xs font-medium text-white transition hover:bg-violet-600"
+                    className="rounded-xl bg-violet-500/80 px-2.5 py-1.5 text-xs font-medium text-white transition hover:bg-violet-500"
                   >
                     EDIT
                   </button>
@@ -187,7 +187,7 @@ function User() {
             </div>
           ))}
         </div>
-        {state.error && <p className="mt-2 text-red-500">{state.error}</p>}
+        {state.error && <p className="mt-2 text-red-400">{state.error}</p>}
       </div>
 
       <div className="mb-3">
@@ -198,11 +198,11 @@ function User() {
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
             placeholder="Enter user name"
-            className="flex-1 rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
+            className="flex-1 rounded-xl border border-white/10 bg-zinc-950/60 px-3 py-2.5 text-white placeholder:text-zinc-500 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20"
           />
           <button
             type="submit"
-            className="rounded bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700"
+            className="rounded-xl bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110"
           >
             {editingUserId !== null ? "Save User" : "Add User"}
           </button>
@@ -213,7 +213,7 @@ function User() {
         <button
           type="button"
           onClick={() => dispatch({ type: "FETCH_START" })}
-          className="rounded bg-slate-500 px-3 py-2 text-sm font-medium text-white transition hover:bg-slate-600"
+          className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-zinc-200 transition hover:border-white/20 hover:bg-white/10"
         >
           Loading
         </button>
@@ -228,7 +228,7 @@ function User() {
               ],
             })
           }
-          className="rounded bg-green-500 px-3 py-2 text-sm font-medium text-white transition hover:bg-green-600"
+          className="rounded-xl bg-emerald-500/80 px-3 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500"
         >
           Success
         </button>
@@ -240,7 +240,7 @@ function User() {
               error: "Щось пішло не так",
             })
           }
-          className="rounded bg-red-500 px-3 py-2 text-sm font-medium text-white transition hover:bg-red-600"
+          className="rounded-xl bg-red-500/80 px-3 py-2 text-sm font-semibold text-white transition hover:bg-red-500"
         >
           Error
         </button>
@@ -248,7 +248,7 @@ function User() {
         <button
           type="button"
           onClick={getUsers}
-          className="rounded bg-indigo-500 px-3 py-2 text-sm font-medium text-white transition hover:bg-indigo-600"
+          className="rounded-xl bg-indigo-500/80 px-3 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500"
         >
           Get Users
         </button>

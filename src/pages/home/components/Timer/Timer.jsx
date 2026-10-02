@@ -15,7 +15,12 @@ function Timer() {
     };
   }, []); // 👈 Масив залежностей (порожній масив означає "виконати лише 1 раз при монтуванні")
 
-  return <div>Секунд: {seconds}</div>;
+  return (
+    <div className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-violet-500/10 backdrop-blur-xl">
+      <p className="text-sm text-zinc-300">Timer</p>
+      <p className="mt-2 text-2xl font-bold text-white">{seconds}s</p>
+    </div>
+  );
 }
 
 export default Timer;

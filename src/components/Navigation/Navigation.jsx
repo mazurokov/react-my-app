@@ -41,18 +41,16 @@ function Navigation() {
   ];
 
   return (
-    <nav className="mx-auto flex max-w-6xl items-center gap-3 px-4 pb-6 text-sm font-medium">
+    <nav className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 pb-6 pt-4 text-sm font-medium">
       {navLinks.map((link) => (
         <NavLink
           className={({ isActive }) =>
             [
-              "rounded-xl px-4 py-2 transition",
-
+              "rounded-xl border px-4 py-2.5 transition-all duration-200",
               theme === "dark"
-                ? "bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white"
-                : "bg-white text-slate-700 hover:bg-slate-200 hover:text-slate-900",
-
-              isActive ? "font-bold text-blue-500" : "",
+                ? "border-white/10 bg-white/5 text-zinc-300 hover:border-white/20 hover:bg-white/10 hover:text-white"
+                : "border-zinc-200 bg-white/80 text-zinc-700 hover:border-zinc-300 hover:bg-white hover:text-zinc-900",
+              isActive ? "border-violet-400/60 bg-violet-500/10 text-violet-200 shadow-lg shadow-violet-500/10" : "",
             ].join(" ")
           }
           key={link.to}

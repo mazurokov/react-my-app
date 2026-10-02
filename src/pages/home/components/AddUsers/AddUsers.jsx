@@ -146,8 +146,8 @@ function Users() {
   }, []);
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
-      <h2 className="mb-4 text-xl font-semibold text-slate-800">Users Component</h2>
+    <div className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-violet-500/10 backdrop-blur-xl">
+      <h2 className="mb-4 text-xl font-semibold text-white">Users Component</h2>
 
       <form onSubmit={handleSubmit} className="mb-5 flex flex-wrap gap-3">
         <input
@@ -156,7 +156,7 @@ function Users() {
           value={userName}
           onChange={(event) => setUserName(event.target.value)}
           placeholder="Name"
-          className="w-48 rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
+          className="w-48 rounded-xl border border-white/10 bg-zinc-950/60 px-3 py-2.5 text-white placeholder:text-zinc-500 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20"
         />
         <input
           type="email"
@@ -164,29 +164,29 @@ function Users() {
           value={userEmail}
           onChange={(event) => setUserEmail(event.target.value)}
           placeholder="Email"
-          className="w-48 rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
+          className="w-48 rounded-xl border border-white/10 bg-zinc-950/60 px-3 py-2.5 text-white placeholder:text-zinc-500 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20"
         />
         <button
           disabled={isLoadingPost || isLoadingEdit}
           type="submit"
-          className="rounded bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-emerald-300"
+          className="rounded-xl bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {editingUserId === null ? "Add User" : "Save User"}
         </button>
       </form>
 
       {isLoadingGet ? (
-        <p className="text-slate-600">Loading users...</p>
+        <p className="text-zinc-300">Loading users...</p>
       ) : error ? (
-        <p className="text-red-500">Error: {error}</p>
+        <p className="text-red-400">Error: {error}</p>
       ) : (
         <ul className="space-y-2">
           {users.map((user) => (
             <li
               key={user.id}
-              className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white p-3"
+              className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-zinc-950/30 p-3"
             >
-              <span className="text-slate-700">
+              <span className="text-zinc-200">
                 {user.name} - {user.email}
               </span>
 
@@ -195,7 +195,7 @@ function Users() {
                   <button
                     type="button"
                     onClick={cancelEdit}
-                    className="rounded bg-slate-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-slate-600"
+                    className="rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-zinc-200 transition hover:border-white/20 hover:bg-white/10"
                   >
                     Cancel
                   </button>
@@ -203,7 +203,7 @@ function Users() {
                   <button
                     type="button"
                     onClick={() => editUser(user.id)}
-                    className="rounded bg-sky-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-sky-600"
+                    className="rounded-xl bg-sky-500/80 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-sky-500"
                   >
                     Edit
                   </button>
@@ -215,7 +215,7 @@ function Users() {
                   onClick={() => {
                     deleteUser(user.id);
                   }}
-                  className="rounded bg-red-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-red-600 disabled:cursor-not-allowed disabled:bg-red-300"
+                  className="rounded-xl bg-red-500/80 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isDeletingArray.includes(user.id) ? "Deleting..." : "Delete"}
                 </button>

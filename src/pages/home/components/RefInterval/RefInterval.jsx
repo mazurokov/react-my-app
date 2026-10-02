@@ -26,14 +26,14 @@ function RefInterval() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 p-5 shadow-sm">
-      <h3 className="text-lg font-semibold text-slate-800">Ref Interval</h3>
-      <p className="text-sm text-slate-600">Count: {count}</p>
+    <div className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-violet-500/10 backdrop-blur-xl">
+      <h3 className="text-lg font-semibold text-white">Ref Interval</h3>
+      <p className="text-sm text-zinc-300">Count: {count}</p>
       <div className="flex flex-wrap gap-3">
         <button
           type="button"
           onClick={startInterval}
-          className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-600"
+          className="rounded-xl bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110"
         >
           Start Interval
         </button>
@@ -41,7 +41,7 @@ function RefInterval() {
         <button
           type="button"
           onClick={stopInterval}
-          className="rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600"
+          className="rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-2.5 text-sm font-medium text-red-200 transition hover:bg-red-500/20"
         >
           Stop Interval
         </button>

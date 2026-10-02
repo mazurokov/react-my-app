@@ -58,99 +58,90 @@ function RegisterForm() {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">RegisterForm</h2>
+    <div className="rounded-2xl border border-white/10 bg-zinc-950/20 p-4">
+      <h2 className="mb-4 text-2xl font-bold tracking-tight text-white">RegisterForm</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex gap-2">
           <div className="flex-1">
             <input
-              className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
+              className="w-full rounded-xl border border-white/10 bg-zinc-950/60 px-3 py-2.5 text-white placeholder:text-zinc-500 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20"
               type="text"
               placeholder="UserName"
               {...register("userName")}
             />
             {errors.userName && (
-              <p className="mt-1 text-sm text-red-500">
-                {errors.userName.message}
-              </p>
+              <p className="mt-1 text-sm text-red-400">{errors.userName.message}</p>
             )}
           </div>
 
           <div className="flex-1">
             <input
-              className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
+              className="w-full rounded-xl border border-white/10 bg-zinc-950/60 px-3 py-2.5 text-white placeholder:text-zinc-500 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20"
               type="text"
               placeholder="Name"
               {...register("name")}
             />
-            {errors.name && (
-              <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
-            )}
+            {errors.name && <p className="mt-1 text-sm text-red-400">{errors.name.message}</p>}
           </div>
 
           <div className="flex-1">
             <input
-              className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
+              className="w-full rounded-xl border border-white/10 bg-zinc-950/60 px-3 py-2.5 text-white placeholder:text-zinc-500 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20"
               type="email"
               placeholder="Email"
               {...register("email")}
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-red-500">
-                {errors.email.message}
-              </p>
+              <p className="mt-1 text-sm text-red-400">{errors.email.message}</p>
             )}
           </div>
 
           <div className="flex-1">
             <input
-              className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
+              className="w-full rounded-xl border border-white/10 bg-zinc-950/60 px-3 py-2.5 text-white placeholder:text-zinc-500 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20"
               type="number"
               placeholder="Age"
               {...register("age", {
                 valueAsNumber: true,
               })}
             />
-            {errors.age && (
-              <p className="mt-1 text-sm text-red-500">{errors.age.message}</p>
-            )}
+            {errors.age && <p className="mt-1 text-sm text-red-400">{errors.age.message}</p>}
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 mt-2">
+        <div className="mt-2 flex flex-col gap-2">
           <div className="w-1/3">
             <input
-              className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
+              className="w-full rounded-xl border border-white/10 bg-zinc-950/60 px-3 py-2.5 text-white placeholder:text-zinc-500 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20"
               type="password"
               placeholder="Password"
               {...register("password")}
             />
             {errors.password && (
-              <p className="mt-1 text-sm text-red-500">
-                {errors.password.message}
-              </p>
+              <p className="mt-1 text-sm text-red-400">{errors.password.message}</p>
             )}
           </div>
 
           <div className="w-1/3">
             <input
-              className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none transition focus:border-emerald-500"
+              className="w-full rounded-xl border border-white/10 bg-zinc-950/60 px-3 py-2.5 text-white placeholder:text-zinc-500 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20"
               type="password"
               placeholder="Confirm Password"
               {...register("confirmPassword")}
             />
 
             {errors.confirmPassword && (
-              <p className="mt-1 text-sm text-red-500">
+              <p className="mt-1 text-sm text-red-400">
                 {errors.confirmPassword.message}
               </p>
             )}
           </div>
         </div>
-        <div className="flex gap-1">
+
+        <div className="flex gap-2">
           <button
-            className="mt-3 rounded bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700"
+            className="mt-3 rounded-xl bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
             type="submit"
             disabled={!isValid || isSubmitting}
           >
@@ -158,7 +149,7 @@ function RegisterForm() {
           </button>
 
           <button
-            className="mt-3 rounded bg-gray-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700"
+            className="mt-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-white/20 hover:bg-white/10"
             type="button"
             onClick={() =>
               reset({
@@ -175,9 +166,11 @@ function RegisterForm() {
           </button>
         </div>
 
-        <p>Dirty: {isDirty ? "YES" : "NO"}</p>
-        <p>Valid: {isValid ? "YES" : "NO"}</p>
-        <p>Submitting: {isSubmitting ? "YES" : "NO"}</p>
+        <div className="flex flex-wrap gap-3 text-sm text-zinc-300">
+          <p>Dirty: {isDirty ? "YES" : "NO"}</p>
+          <p>Valid: {isValid ? "YES" : "NO"}</p>
+          <p>Submitting: {isSubmitting ? "YES" : "NO"}</p>
+        </div>
       </form>
     </div>
   );

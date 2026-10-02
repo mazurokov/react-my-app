@@ -34,20 +34,20 @@ function Users() {
   }, []);
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
-      <h2 className="mb-4 text-xl font-semibold text-slate-800">Компонент Users</h2>
+    <div className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl shadow-violet-500/10 backdrop-blur-xl">
+      <h2 className="mb-4 text-xl font-semibold text-white">Компонент Users</h2>
 
       <ul className="mb-4 space-y-3">
         {users.map((user) => (
-          <li key={user.id} className="flex items-center justify-between gap-3 rounded-lg bg-white p-3 shadow-sm">
-            <p className="text-slate-700">
+          <li key={user.id} className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-zinc-950/30 p-3">
+            <p className="text-zinc-200">
               Ім'я: {user.name}, Вік: {user.age}
             </p>
 
             <button
               type="button"
               onClick={() => deleteUser(user.id)}
-              className="rounded bg-red-500 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-red-600"
+              className="rounded-xl bg-red-500/80 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-red-500"
             >
               Видалити
             </button>
@@ -62,7 +62,7 @@ function Users() {
           name="name"
           type="text"
           placeholder="Ім'я"
-          className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none ring-0 transition focus:border-emerald-500"
+          className="w-full rounded-xl border border-white/10 bg-zinc-950/60 px-3 py-2.5 text-white placeholder:text-zinc-500 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20"
         />
         <input
           value={age}
@@ -70,11 +70,11 @@ function Users() {
           name="age"
           type="number"
           placeholder="Вік"
-          className="w-full rounded border border-slate-300 px-3 py-2 text-slate-800 outline-none ring-0 transition focus:border-emerald-500"
+          className="w-full rounded-xl border border-white/10 bg-zinc-950/60 px-3 py-2.5 text-white placeholder:text-zinc-500 outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20"
         />
         <button
           type="submit"
-          className="rounded bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700"
+          className="rounded-xl bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110"
         >
           Додати
         </button>

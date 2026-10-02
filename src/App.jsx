@@ -39,19 +39,39 @@ function App() {
         <DefaultLayout>
           <main
             className={[
-              "min-h-screen",
-              theme === "dark"
-                ? "bg-slate-950 text-white"
-                : "bg-slate-100 text-slate-900",
+              "relative min-h-screen overflow-hidden bg-zinc-950 text-white",
+              theme === "dark" ? "" : "bg-zinc-100 text-zinc-900",
             ].join(" ")}
+            style={
+              theme === "dark"
+                ? {
+                    backgroundImage:
+                      "radial-gradient(circle at top, rgba(139,92,246,0.18), transparent 35%), radial-gradient(circle at bottom right, rgba(59,130,246,0.14), transparent 30%)",
+                  }
+                : undefined
+            }
           >
-            <Navigation />
+            <div className="pointer-events-none absolute inset-0 opacity-30">
+              <div className="absolute left-1/2 top-[-180px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-violet-600/20 blur-[120px]" />
+              <div className="absolute bottom-[-180px] right-[-100px] h-[400px] w-[400px] rounded-full bg-blue-600/15 blur-[120px]" />
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
+                  backgroundSize: "48px 48px",
+                }}
+              />
+            </div>
 
-            {/*<button onClick={() => setIsAuthenticated((prev) => !prev)}>*/}
-            {/*  Toggle Auth {isAuthenticated ? "Logout" : "Login"}*/}
-            {/*</button>*/}
+            <div className="relative z-10">
+              <Navigation />
 
-            <Routes>
+              {/*<button onClick={() => setIsAuthenticated((prev) => !prev)}>*/}
+              {/*  Toggle Auth {isAuthenticated ? "Logout" : "Login"}*/}
+              {/*</button>*/}
+
+              <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/users" element={<Users />} />
@@ -89,8 +109,9 @@ function App() {
                 <Route path="counter" element={<Counter />} />
               </Route>
 
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
           </main>
         </DefaultLayout>
       </ThemeContext.Provider>

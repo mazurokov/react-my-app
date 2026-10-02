@@ -12,11 +12,11 @@ function UserItem({
   isEditing,
 }) {
   return (
-    <div className="flex items-center justify-between gap-3 rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700 shadow-sm">
+    <div className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-zinc-950/30 px-3 py-2 text-sm text-zinc-200 shadow-sm">
       {isEditing ? (
         <>
           <input
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+            className="w-full rounded-xl border border-white/10 bg-zinc-950/60 px-3 py-2 text-sm text-white outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20"
             value={editingName}
             onChange={(e) => onEditingNameChange(e.target.value)}
           />
@@ -32,7 +32,7 @@ function UserItem({
         </>
       ) : (
         <>
-          <span className="min-w-0 flex-1 truncate font-medium text-gray-800">
+          <span className="min-w-0 flex-1 truncate font-medium text-white">
             {user?.name}
           </span>
 

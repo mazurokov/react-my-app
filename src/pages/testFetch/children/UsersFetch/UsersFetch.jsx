@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 function TestFetch() {
   const [users, setUsers] = useState([]);
@@ -20,7 +20,7 @@ function TestFetch() {
         console.error("Fetch error:", error);
       }
     }
-  }
+  };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -33,13 +33,13 @@ function TestFetch() {
   }, []);
 
   return (
-    <section>
-      <h2 className={"text-xl font-bold"}>UsersFetch</h2>
-      <div>
+    <section className="rounded-2xl border border-white/10 bg-zinc-950/30 p-4">
+      <h2 className="mb-4 text-xl font-bold tracking-tight text-white">UsersFetch</h2>
+      <div className="space-y-3">
         {users.map((user) => (
-          <div key={user.id} className={"border-b border-slate-300 py-2"}>
-            <p className={"font-bold"}>{user.name}</p>
-            <p>{user.email}</p>
+          <div key={user.id} className="border-b border-white/10 py-3 last:border-none">
+            <p className="font-semibold text-white">{user.name}</p>
+            <p className="text-sm text-zinc-400">{user.email}</p>
           </div>
         ))}
       </div>

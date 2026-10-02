@@ -8,30 +8,30 @@ function CommonButton({
   ...props
 }) {
   const variants = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500",
+    primary: "bg-gradient-to-r from-violet-500 to-blue-500 text-white shadow-lg shadow-violet-500/20 hover:brightness-110 focus:ring-violet-500",
 
-    secondary: "bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500",
+    secondary: "bg-white/10 text-zinc-200 border border-white/10 hover:bg-white/15 focus:ring-violet-500",
 
-    success: "bg-green-600 text-white hover:bg-green-700 focus:ring-green-500",
+    success: "bg-emerald-500 text-white hover:bg-emerald-400 focus:ring-emerald-500",
 
     danger:
-      "bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 focus:ring-red-500",
+      "border border-red-400/30 bg-red-500/10 text-red-200 hover:bg-red-500/20 focus:ring-red-500",
 
     warning:
-      "bg-yellow-500 text-white hover:bg-yellow-600 focus:ring-yellow-500",
+      "bg-amber-500 text-white hover:bg-amber-400 focus:ring-amber-500",
 
-    info: "bg-cyan-600 text-white hover:bg-cyan-700 focus:ring-cyan-500",
+    info: "bg-cyan-500 text-white hover:bg-cyan-400 focus:ring-cyan-500",
 
     outline:
-      "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-gray-500",
+      "border border-white/10 bg-transparent text-zinc-200 hover:bg-white/5 focus:ring-violet-500",
 
-    ghost: "bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-500",
+    ghost: "bg-transparent text-zinc-200 hover:bg-white/5 focus:ring-violet-500",
 
-    dark: "bg-gray-900 text-white hover:bg-gray-800 focus:ring-gray-700",
+    dark: "bg-zinc-900 text-white hover:bg-zinc-800 focus:ring-zinc-700",
 
-    light: "bg-gray-100 text-gray-800 hover:bg-gray-200 focus:ring-gray-400",
+    light: "bg-white/10 text-zinc-100 hover:bg-white/15 focus:ring-zinc-400",
 
-    link: "bg-transparent text-blue-600 hover:text-blue-800 hover:underline focus:ring-blue-500",
+    link: "bg-transparent text-violet-300 hover:text-violet-200 hover:underline focus:ring-violet-500",
   };
 
   return (
@@ -40,9 +40,9 @@ function CommonButton({
       type={type}
       disabled={disabled || isLoading}
       className={`
-        rounded-md px-4 py-2 text-sm font-medium
-        transition
-        focus:outline-none focus:ring-2 focus:ring-offset-2
+        rounded-xl px-4 py-2.5 text-sm font-semibold
+        transition-all duration-200
+        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-950
         disabled:cursor-not-allowed disabled:opacity-60
         ${variants[variant] || variants.primary}
         ${className || ""}

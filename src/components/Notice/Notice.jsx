@@ -1,12 +1,12 @@
 function Notice({ type = "info", children }) {
   const classes = {
-    error: "border-red-200 bg-red-50 text-red-600",
-    success: "border-green-200 bg-green-50 text-green-700",
-    info: "border-blue-200 bg-blue-50 text-blue-700",
+    error: "border-red-400/30 bg-red-500/10 text-red-200",
+    success: "border-emerald-400/30 bg-emerald-500/10 text-emerald-200",
+    info: "border-violet-400/30 bg-violet-500/10 text-violet-200",
   };
 
   return (
-    <p className={`rounded-md border px-3 py-2 text-sm ${classes[type]}`}>
+    <p className={`rounded-xl border px-3 py-2 text-sm ${classes[type]}`}>
       {children}
     </p>
   );
