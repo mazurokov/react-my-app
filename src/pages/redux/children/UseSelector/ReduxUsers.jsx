@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
 import {
+  selectUsers,
+  selectUserCount,
   addUser,
   updateUserName,
   removeUser,
@@ -9,7 +11,8 @@ import {
 } from "@store/redux/usersSlice.js";
 
 function ReduxUsers() {
-  const users = useSelector((state) => state.users.users);
+  const users = useSelector(selectUsers);
+  const userCount = useSelector(selectUserCount);
   const dispatch = useDispatch();
 
   const [userName, setUserName] = useState("");
@@ -53,7 +56,9 @@ function ReduxUsers() {
           <p className="text-xs font-medium uppercase tracking-[0.28em] text-cyan-200/80">
             users
           </p>
-          <h2 className="mt-2 text-2xl font-bold text-white">Redux Users</h2>
+          <h2 className="mt-2 text-2xl font-bold text-white">
+            Redux Users {userCount > 0 ? userCount : ""}
+          </h2>
         </div>
 
         <button
@@ -91,7 +96,9 @@ function ReduxUsers() {
               key={user.id}
               className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 sm:flex-row sm:items-center sm:justify-between"
             >
-              <span className="text-base font-medium text-zinc-100">{user.name}</span>
+              <span className="text-base font-medium text-zinc-100">
+                {user.name}
+              </span>
 
               <div className="flex flex-wrap gap-2">
                 <button
