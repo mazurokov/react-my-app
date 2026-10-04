@@ -6,7 +6,11 @@
   }
 
   body {
-    @apply min-h-screen bg-slate-100 text-slate-900 antialiased;
+    @apply min-h-screen bg-slate-950 text-white antialiased;
+    background-image:
+      radial-gradient(circle at top, rgba(168, 85, 247, 0.18), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.18), transparent 22%),
+      linear-gradient(135deg, #020617 0%, #0f172a 35%, #111827 100%);
   }
 
   a {

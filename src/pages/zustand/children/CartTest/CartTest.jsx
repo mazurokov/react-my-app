@@ -1,3 +1,4 @@
+import CommonButton from "@components/CommonButton/CommonButton.jsx";
 import cartStore from "@store/cartStore/cartStore.js";
 
 function CartTest() {
@@ -11,15 +12,16 @@ function CartTest() {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <div className="mx-auto max-w-2xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-      <h1 className="mb-2 text-2xl font-bold text-slate-800">Cart Test Page</h1>
-      <p className="mb-6 text-sm text-slate-600">
+    <div className="mt-6 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl shadow-violet-500/10 backdrop-blur-xl">
+      <h1 className="mb-2 text-2xl font-bold tracking-tight text-white">
+        Cart Test Page
+      </h1>
+      <p className="mb-6 text-sm text-zinc-300">
         This is a test page for the shopping cart.
       </p>
 
       <div className="mb-6 flex flex-wrap gap-3">
-        <button
-          className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
+        <CommonButton
           onClick={() =>
             addItem({
               id: 1,
@@ -27,11 +29,12 @@ function CartTest() {
               price: 100,
             })
           }
+          type="button"
+          variant="primary"
         >
           Add Product 1
-        </button>
-        <button
-          className="rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-700"
+        </CommonButton>
+        <CommonButton
           onClick={() =>
             addItem({
               id: 2,
@@ -39,18 +42,22 @@ function CartTest() {
               price: 200,
             })
           }
+          type="button"
+          variant="secondary"
         >
           Add Product 2
-        </button>
-        <button
-          className="rounded-lg border border-slate-300 bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-200"
-          onClick={() => clearCart()}
+        </CommonButton>
+        <CommonButton
+          onClick={clearCart}
+          type="button"
+          variant="outline"
+          className="border-white/10 bg-transparent text-zinc-200 hover:bg-white/5"
         >
           Clear Cart
-        </button>
+        </CommonButton>
       </div>
 
-      <h2 className="mb-4 text-xl font-semibold text-slate-800">Cart Items:</h2>
+      <h2 className="mb-4 text-xl font-semibold text-white">Cart Items:</h2>
 
       <div className="space-y-3">
         {cart?.length ? (
@@ -58,45 +65,47 @@ function CartTest() {
             {cart.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3"
+                className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-zinc-950/30 p-3"
               >
                 <div className="flex items-center gap-3">
-                  <span className="font-medium text-slate-800">
-                    {item.name}
-                  </span>
-                  <span className="text-sm text-slate-600">
+                  <span className="font-medium text-white">{item.name}</span>
+                  <span className="text-sm text-zinc-400">
                     Quantity: {item.quantity}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <button
-                    className="h-8 w-8 rounded-md bg-slate-200 text-lg font-semibold text-slate-700 transition hover:bg-slate-300"
+                    className="h-8 w-8 rounded-lg border border-white/10 bg-white/5 text-lg font-semibold text-zinc-200 transition hover:bg-white/10"
                     onClick={() => incrementQuantity(item.id)}
+                    type="button"
                   >
                     +
                   </button>
                   <button
-                    className="h-8 w-8 rounded-md bg-slate-200 text-lg font-semibold text-slate-700 transition hover:bg-slate-300"
+                    className="h-8 w-8 rounded-lg border border-white/10 bg-white/5 text-lg font-semibold text-zinc-200 transition hover:bg-white/10"
                     onClick={() => decrementQuantity(item.id)}
+                    type="button"
                   >
                     -
                   </button>
-                  <button
-                    className="rounded-md bg-red-500 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-red-600"
+                  <CommonButton
                     onClick={() => removeItem(item.id)}
+                    type="button"
+                    variant="danger"
+                    className="px-3 py-1.5"
                   >
                     Remove
-                  </button>
+                  </CommonButton>
                 </div>
               </div>
             ))}
-            <div className="mt-5 rounded-xl bg-slate-100 p-3 text-lg font-semibold text-slate-800">
+            <div className="mt-5 rounded-2xl border border-violet-400/20 bg-violet-500/10 p-3 text-lg font-semibold text-violet-100">
               Total: {total}
             </div>
           </>
         ) : (
-          <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center text-slate-500">
+          <div className="rounded-2xl border border-dashed border-white/10 bg-zinc-950/20 p-6 text-center text-zinc-400">
             пусто
           </div>
         )}
