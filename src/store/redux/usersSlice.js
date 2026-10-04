@@ -1,4 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
+  const response = await fetch("https://jsonplaceholder.typicode.com/users");
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch users");
+  }
+
+  return response.json();
+});
 
 const initialState = {
   users: [],
@@ -49,6 +59,11 @@ const usersSlice = createSlice({
 
 export const selectUsers = (state) => state.users.users;
 export const selectUserCount = (state) => state.users.users.length;
+
+export const selectUsersLoading = (state) => state.users.loading;
+
+export const selectUsersError = (state) => state.users.error;
+
 export const { addUser, removeUser, clearUsers, updateUserName } =
   usersSlice.actions;
 

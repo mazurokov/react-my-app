@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   selectUsers,
@@ -8,11 +8,17 @@ import {
   updateUserName,
   removeUser,
   clearUsers,
+  fetchUsers,
+  selectUsersLoading,
+  selectUsersError,
 } from "@store/redux/usersSlice.js";
 
 function ReduxUsers() {
   const users = useSelector(selectUsers);
   const userCount = useSelector(selectUserCount);
+  const usersLoading = useSelector(selectUsersLoading);
+  const usersError = useSelector(selectUsersError);
+
   const dispatch = useDispatch();
 
   const [userName, setUserName] = useState("");
@@ -48,6 +54,10 @@ function ReduxUsers() {
   const removeAllUsers = () => {
     dispatch(clearUsers());
   };
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
 
   return (
     <section className="rounded-[28px] border border-white/10 bg-slate-950/40 p-5 shadow-2xl shadow-violet-500/10 backdrop-blur-xl sm:p-6">
@@ -88,7 +98,16 @@ function ReduxUsers() {
           Add user
         </button>
       </div>
-
+      {usersLoading && (
+        <p className="mb-5 text-sm font-medium text-cyan-200/80">
+          Loading users...
+        </p>
+      )}
+      {usersError && (
+        <p className="mb-5 text-sm font-medium text-rose-400/80">
+          Error: {usersError}
+        </p>
+      )}
       <ul className="space-y-3">
         {users.length ? (
           users.map((user) => (
