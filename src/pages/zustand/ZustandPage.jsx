@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import AuthTest from "@pages/zustand/children/authTest/AuthTest.jsx";
+import CartTest from "@pages/zustand/children/CartTest/CartTest.jsx";
 
 function ZustandPage() {
   return (
@@ -23,6 +24,8 @@ function ZustandPage() {
         </nav>
 
         <AuthTest />
+
+        <CartTest />
 
         <div className="mt-4">
           <Outlet />

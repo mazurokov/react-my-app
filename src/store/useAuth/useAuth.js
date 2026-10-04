@@ -1,20 +1,28 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-const useAuth = create((set) => ({
-  user: null,
-  isAuthenticated: false,
-
-  login: (user) =>
-    set({
-      user,
-      isAuthenticated: true,
-    }),
-
-  logout: () =>
-    set({
+const useAuth = create(
+  persist(
+    (set) => ({
       user: null,
-      isAuthenticated: false,
+
+      login: (user) =>
+        set({
+          user,
+        }),
+
+      logout: () =>
+        set({
+          user: null,
+        }),
     }),
-}));
+    {
+      name: "auth-storage",
+      partialize: (state) => ({
+        user: state.user,
+      }),
+    },
+  ),
+);
 
 export default useAuth;

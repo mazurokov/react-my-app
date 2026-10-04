@@ -2,7 +2,7 @@ import useAuth from "@store/useAuth/useAuth.js";
 
 function AuthTest() {
   const user = useAuth((state) => state.user);
-  const isAuthenticated = useAuth((state) => state.isAuthenticated);
+  const isAuthenticated = useAuth((state) => state.user !== null);
   const login = useAuth((state) => state.login);
   const logout = useAuth((state) => state.logout);
 
