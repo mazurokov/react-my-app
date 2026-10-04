@@ -4,7 +4,9 @@ function Users() {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
 
-  const [users, setUsers] = useState([{ id: 1, name: "Jack", age: 22 }]);
+  const [users, setUsers] = useState([{
+ id: 1, name: "Jack", age: 22 
+}]);
 
   const newUser = (event) => {
     event.preventDefault();

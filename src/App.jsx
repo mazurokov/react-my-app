@@ -24,6 +24,8 @@ import UsersQuery from "@pages/queryProvider/chilldren/usersQuery/UsersQuery.jsx
 import ZustandPage from "@pages/zustand/ZustandPage.jsx";
 import Counter from "@pages/zustand/children/counter/Counter.jsx";
 import CounterDisplay from "@pages/zustand/children/counter/CounterDisplay.jsx";
+import ReduxPage from "@pages/redux/ReduxPage.jsx";
+import ReduxUsers from "@pages/redux/children/UseSelector/ReduxUsers.jsx";
 
 function App() {
   const [theme, setTheme] = useState("dark");
@@ -34,7 +36,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <ThemeContext.Provider
+        value={{
+          theme,
+          toggleTheme,
+        }}
+      >
         <DefaultLayout>
           <main
             className={[
@@ -107,6 +114,10 @@ function App() {
                 <Route path="/zustand" element={<ZustandPage />}>
                   <Route path="counter" element={<Counter />} />
                   <Route path="counter-display" element={<CounterDisplay />} />
+                </Route>
+
+                <Route path="/redux" element={<ReduxPage />}>
+                  <Route path="users" element={<ReduxUsers />} />
                 </Route>
 
                 <Route path="*" element={<NotFound />} />

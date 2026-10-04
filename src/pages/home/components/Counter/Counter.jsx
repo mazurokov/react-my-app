@@ -59,7 +59,9 @@ function Counter() {
       <div className="flex flex-wrap gap-2">
         <button
           type="button"
-          onClick={() => dispatch({ type: "INCREMENT" })}
+          onClick={() => dispatch({
+ type: "INCREMENT" 
+})}
           className="rounded-xl bg-gradient-to-r from-violet-500 to-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110"
         >
           +
@@ -67,7 +69,9 @@ function Counter() {
 
         <button
           type="button"
-          onClick={() => dispatch({ type: "DECREMENT" })}
+          onClick={() => dispatch({
+ type: "DECREMENT" 
+})}
           className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-zinc-200 transition hover:border-white/20 hover:bg-white/10"
         >
           -
@@ -75,7 +79,9 @@ function Counter() {
 
         <button
           type="button"
-          onClick={() => dispatch({ type: "RESET" })}
+          onClick={() => dispatch({
+ type: "RESET" 
+})}
           className="rounded-xl border border-white/10 bg-zinc-900/60 px-3 py-2 text-sm font-medium text-zinc-200 transition hover:bg-zinc-800"
         >
           Reset
@@ -83,7 +89,9 @@ function Counter() {
 
         <button
           type="button"
-          onClick={() => dispatch({ type: "INCREMENT_BY", amount: 5 })}
+          onClick={() => dispatch({
+ type: "INCREMENT_BY", amount: 5 
+})}
           className="rounded-xl bg-emerald-500/80 px-3 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500"
         >
           Increment by 5
@@ -91,7 +99,9 @@ function Counter() {
 
         <button
           type="button"
-          onClick={() => dispatch({ type: "DECREMENT_BY", amount: 5 })}
+          onClick={() => dispatch({
+ type: "DECREMENT_BY", amount: 5 
+})}
           className="rounded-xl bg-amber-500/80 px-3 py-2 text-sm font-semibold text-white transition hover:bg-amber-500"
         >
           Decrement by 5
@@ -99,7 +109,9 @@ function Counter() {
 
         <button
           type="button"
-          onClick={() => dispatch({ type: "SET_STEP", step: 5 })}
+          onClick={() => dispatch({
+ type: "SET_STEP", step: 5 
+})}
           className="rounded-xl bg-violet-500/80 px-3 py-2 text-sm font-semibold text-white transition hover:bg-violet-500"
         >
           Set step to 5

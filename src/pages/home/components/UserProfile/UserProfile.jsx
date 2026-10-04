@@ -2,7 +2,9 @@ import { useState } from "react";
 
 function UserProfile() {
   // Стан може бути об'єктом, масивом, числом чи рядком
-  const [user, setUser] = useState({ name: "Олена", age: 25 });
+  const [user, setUser] = useState({
+ name: "Олена", age: 25 
+});
 
   const updateName = () => {
     // ⚠️ НЕПРАВИЛЬНО (пряма мутація): user.name = 'Марія'; setUser(user);

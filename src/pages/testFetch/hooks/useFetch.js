@@ -10,7 +10,9 @@ function useFetch(url) {
     setError(null);
 
     try {
-      const response = await fetch(url, { signal });
+      const response = await fetch(url, {
+ signal 
+});
 
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -32,7 +34,9 @@ function useFetch(url) {
 
   useEffect(() => {
     const controller = new AbortController();
-    Promise.resolve().then(() => localFetch({ signal: controller.signal }));
+    Promise.resolve().then(() => localFetch({
+ signal: controller.signal 
+}));
     return () => controller.abort();
   }, [localFetch]);
 

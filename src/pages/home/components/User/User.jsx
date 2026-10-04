@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 function User() {
-  const [user, setUser] = useState({ name: "Олена", age: 25 });
+  const [user, setUser] = useState({
+ name: "Олена", age: 25 
+});
 
   const updateAge = () => {
     setUser((prevUser) => ({

@@ -50,7 +50,9 @@ const updateUser = async ({ id, name }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({
+ name 
+}),
     }
   );
 

@@ -38,6 +38,10 @@ function Navigation() {
       to: "/zustand",
       label: "Zustand",
     },
+    {
+      to: "/redux",
+      label: "Redux",
+    },
   ];
 
   return (
@@ -50,7 +54,9 @@ function Navigation() {
               theme === "dark"
                 ? "border-white/10 bg-white/5 text-zinc-300 hover:border-white/20 hover:bg-white/10 hover:text-white"
                 : "border-zinc-200 bg-white/80 text-zinc-700 hover:border-zinc-300 hover:bg-white hover:text-zinc-900",
-              isActive ? "border-violet-400/60 bg-violet-500/10 text-violet-200 shadow-lg shadow-violet-500/10" : "",
+              isActive
+                ? "border-violet-400/60 bg-violet-500/10 text-violet-200 shadow-lg shadow-violet-500/10"
+                : "",
             ].join(" ")
           }
           key={link.to}

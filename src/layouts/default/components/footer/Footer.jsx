@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
 
 const footerLinks = [
-  { label: "Головна", to: "/" },
-  { label: "Про нас", to: "/about" },
-  { label: "Користувачі", to: "/users" },
-  { label: "Форма", to: "/form" },
+  {
+ label: "Головна", to: "/" 
+},
+  {
+ label: "Про нас", to: "/about" 
+},
+  {
+ label: "Користувачі", to: "/users" 
+},
+  {
+ label: "Форма", to: "/form" 
+},
 ];
 
 export default function Footer() {

@@ -6,7 +6,9 @@ function SearchFetch() {
 
   const fetchUsers = useCallback(async ({ signal, searchValue } = {}) => {
     try {
-      const response = await fetch("https://jsonplaceholder.typicode.com/users", { signal });
+      const response = await fetch("https://jsonplaceholder.typicode.com/users", {
+ signal 
+});
 
       if (!response.ok) {
         throw new Error("Failed to fetch users");
@@ -30,7 +32,9 @@ function SearchFetch() {
   useEffect(() => {
     const controller = new AbortController();
     Promise.resolve().then(() =>
-      fetchUsers({ signal: controller.signal, searchValue: search }),
+      fetchUsers({
+ signal: controller.signal, searchValue: search 
+}),
     );
     return () => controller.abort();
   }, [search, fetchUsers]);

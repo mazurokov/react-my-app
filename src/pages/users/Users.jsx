@@ -2,9 +2,15 @@ import { Link } from "react-router-dom";
 
 function Users() {
   const users = [
-    { id: 1, name: "Anna" },
-    { id: 2, name: "Oleg" },
-    { id: 3, name: "Ivan" },
+    {
+ id: 1, name: "Anna" 
+},
+    {
+ id: 2, name: "Oleg" 
+},
+    {
+ id: 3, name: "Ivan" 
+},
   ];
 
   return (

@@ -26,7 +26,9 @@ function reducer(state, action) {
       return {
         ...state,
         users: state.users.map((user) =>
-          user.id === action.id ? { ...user, name: action.name } : user,
+          user.id === action.id ? {
+ ...user, name: action.name 
+} : user,
         ),
       };
 
@@ -61,7 +63,9 @@ function User() {
   const [editingUserId, setEditingUserId] = useState(null);
 
   const getUsers = async () => {
-    dispatch({ type: "FETCH_START" });
+    dispatch({
+ type: "FETCH_START" 
+});
 
     try {
       const response = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -146,7 +150,9 @@ function User() {
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => dispatch({ type: "DELETE_USER", id: user.id })}
+                  onClick={() => dispatch({
+ type: "DELETE_USER", id: user.id 
+})}
                   className="rounded-xl bg-red-500/80 px-2.5 py-1.5 text-xs font-medium text-white transition hover:bg-red-500"
                 >
                   Delete User with ID {user.id}
@@ -212,7 +218,9 @@ function User() {
       <div className="flex flex-wrap gap-3">
         <button
           type="button"
-          onClick={() => dispatch({ type: "FETCH_START" })}
+          onClick={() => dispatch({
+ type: "FETCH_START" 
+})}
           className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-zinc-200 transition hover:border-white/20 hover:bg-white/10"
         >
           Loading
@@ -223,8 +231,12 @@ function User() {
             dispatch({
               type: "FETCH_SUCCESS",
               users: [
-                { id: 1, name: "Анна" },
-                { id: 2, name: "Олег" },
+                {
+ id: 1, name: "Анна" 
+},
+                {
+ id: 2, name: "Олег" 
+},
               ],
             })
           }

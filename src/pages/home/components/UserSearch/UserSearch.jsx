@@ -4,10 +4,18 @@ function UserSearch() {
   const [search, setSearch] = useState("");
 
   const [users] = useState([
-    { id: 1, name: "Анна" },
-    { id: 2, name: "Олег" },
-    { id: 3, name: "Олена" },
-    { id: 4, name: "Іван" },
+    {
+ id: 1, name: "Анна" 
+},
+    {
+ id: 2, name: "Олег" 
+},
+    {
+ id: 3, name: "Олена" 
+},
+    {
+ id: 4, name: "Іван" 
+},
   ]);
 
   const filteredUsers = useMemo(() => {

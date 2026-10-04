@@ -1,11 +1,21 @@
 import { Link } from "react-router-dom";
 
 const navItems = [
-  { label: "Головна", to: "/" },
-  { label: "Про нас", to: "/about" },
-  { label: "Користувачі", to: "/users" },
-  { label: "Форма", to: "/form" },
-  { label: "Вхід", to: "/login" },
+  {
+ label: "Головна", to: "/" 
+},
+  {
+ label: "Про нас", to: "/about" 
+},
+  {
+ label: "Користувачі", to: "/users" 
+},
+  {
+ label: "Форма", to: "/form" 
+},
+  {
+ label: "Вхід", to: "/login" 
+},
 ];
 
 export default function Header() {
