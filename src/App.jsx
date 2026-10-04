@@ -23,10 +23,9 @@ import QueryProvider from "@pages/queryProvider/QueryProvider.jsx";
 import UsersQuery from "@pages/queryProvider/chilldren/usersQuery/UsersQuery.jsx";
 import ZustandPage from "@pages/zustand/ZustandPage.jsx";
 import Counter from "@pages/zustand/children/counter/Counter.jsx";
+import CounterDisplay from "@pages/zustand/children/counter/CounterDisplay.jsx";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
@@ -39,7 +38,7 @@ function App() {
         <DefaultLayout>
           <main
             className={[
-                "relative bg-zinc-950 text-white",
+              "relative bg-zinc-950 text-white",
               theme === "dark" ? "" : "bg-zinc-100 text-zinc-900",
             ].join(" ")}
             style={
@@ -72,42 +71,43 @@ function App() {
               {/*</button>*/}
 
               <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/users" element={<Users />} />
-              <Route path="/users/:id" element={<UserDetails />}>
-                <Route index element={<UserOverview />} />
-                <Route path="profile" element={<UserProfile />} />
-                <Route path="posts" element={<UserPosts />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/users" element={<Users />} />
+                <Route path="/users/:id" element={<UserDetails />}>
+                  <Route index element={<UserOverview />} />
+                  <Route path="profile" element={<UserProfile />} />
+                  <Route path="posts" element={<UserPosts />} />
 
-                <Route path="*" element={<p>User section not found</p>} />
-              </Route>
+                  <Route path="*" element={<p>User section not found</p>} />
+                </Route>
 
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute isAuthenticated={isAuthenticated}>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/login" element={<Login onLogin={() => setIsAuthenticated(true)} />} />
+                <Route
+                  path="/dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <Dashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/login" element={<Login />} />
 
-              <Route path="/form" element={<TestForm />} />
+                <Route path="/form" element={<TestForm />} />
 
-              <Route path="/fetch" element={<TestFetch />}>
-                <Route path="users" element={<UsersFetch />} />
-                <Route path="search" element={<SearchFetch />} />
-                <Route path="users-with-hook" element={<UsersWithHook />} />
-              </Route>
+                <Route path="/fetch" element={<TestFetch />}>
+                  <Route path="users" element={<UsersFetch />} />
+                  <Route path="search" element={<SearchFetch />} />
+                  <Route path="users-with-hook" element={<UsersWithHook />} />
+                </Route>
 
-              <Route path="/query-provider" element={<QueryProvider />}>
-                <Route path="users-query" element={<UsersQuery />} />
-              </Route>
+                <Route path="/query-provider" element={<QueryProvider />}>
+                  <Route path="users-query" element={<UsersQuery />} />
+                </Route>
 
-              <Route path="/zustand" element={<ZustandPage />}>
-                <Route path="counter" element={<Counter />} />
-              </Route>
+                <Route path="/zustand" element={<ZustandPage />}>
+                  <Route path="counter" element={<Counter />} />
+                  <Route path="counter-display" element={<CounterDisplay />} />
+                </Route>
 
                 <Route path="*" element={<NotFound />} />
               </Routes>

@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAuth from "@store/useAuth/useAuth.js";
 
-function Login({ onLogin }) {
+function Login() {
+  const login = useAuth((state) => state.login);
+
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/dashboard";
@@ -27,7 +30,10 @@ function Login({ onLogin }) {
       return;
     }
 
-    onLogin();
+    login({
+      id: 1,
+      name: "Anna",
+    });
     navigate(from, { replace: true });
   };
 
@@ -37,10 +43,14 @@ function Login({ onLogin }) {
         onSubmit={handleSubmit}
         className="w-full rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl shadow-violet-500/10 backdrop-blur-xl"
       >
-        <h1 className="mb-6 text-center text-2xl font-bold tracking-tight text-white">Login Page</h1>
+        <h1 className="mb-6 text-center text-2xl font-bold tracking-tight text-white">
+          Login Page
+        </h1>
 
         <div className="mb-4">
-          <label className="mb-2 block text-sm font-medium text-zinc-300">Email</label>
+          <label className="mb-2 block text-sm font-medium text-zinc-300">
+            Email
+          </label>
           <input
             type="email"
             name="email"
@@ -52,7 +62,9 @@ function Login({ onLogin }) {
         </div>
 
         <div className="mb-6">
-          <label className="mb-2 block text-sm font-medium text-zinc-300">Password</label>
+          <label className="mb-2 block text-sm font-medium text-zinc-300">
+            Password
+          </label>
           <input
             type="password"
             name="password"
