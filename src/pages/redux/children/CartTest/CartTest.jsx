@@ -2,20 +2,22 @@ import CommonButton from "@components/CommonButton/CommonButton.jsx";
 // import cartStore from "@store/cartStore/cartStore.js";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectCart, addItem } from "@store/redux/useCart.js";
+import {
+  selectCart,
+  addItem,
+  selectCartCount,
+  selectCartTotal,
+} from "@store/redux/useCart.js";
 
 function CartTest() {
   const cart = useSelector(selectCart);
+  const cartCount = useSelector(selectCartCount);
+  const cartTotal = useSelector(selectCartTotal);
   // const addItem = cartStore((state) => state.addItem);
   // const removeItem = cartStore((state) => state.removeItem);
   // const incrementQuantity = cartStore((state) => state.incrementQuantity);
   // const decrementQuantity = cartStore((state) => state.decrementQuantity);
   // const clearCart = cartStore((state) => state.clearCart);
-  console.log("test1111", cart);
-  const total = cart.reduce(
-    (sum, item) => sum + item?.price * item?.quantity,
-    0,
-  );
 
   const dispatch = useDispatch();
 
@@ -73,7 +75,6 @@ function CartTest() {
       <h2 className="mb-4 text-xl font-semibold text-white">Cart Items:</h2>
 
       <div className="space-y-3">
-        {JSON.stringify(cart, null, 2)}
         length: {cart.length}
         Boolean: {Boolean(cart.length)}
         {cart?.length ? (
@@ -117,7 +118,8 @@ function CartTest() {
               </div>
             ))}
             <div className="mt-5 rounded-2xl border border-violet-400/20 bg-violet-500/10 p-3 text-lg font-semibold text-violet-100">
-              Total: {total}
+              Total: {cartTotal}
+              Count: {cartCount}
             </div>
           </>
         ) : (
