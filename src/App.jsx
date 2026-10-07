@@ -26,6 +26,7 @@ import Counter from "@pages/zustand/children/counter/Counter.jsx";
 import CounterDisplay from "@pages/zustand/children/counter/CounterDisplay.jsx";
 import ReduxPage from "@pages/redux/ReduxPage.jsx";
 import ReduxUsers from "@pages/redux/children/UseSelector/ReduxUsers.jsx";
+import CartTest from "@pages/redux/children/CartTest/CartTest.jsx";
 
 function App() {
   const [theme, setTheme] = useState("dark");
@@ -118,6 +119,7 @@ function App() {
 
                 <Route path="/redux" element={<ReduxPage />}>
                   <Route path="users" element={<ReduxUsers />} />
+                  <Route path="cart" element={<CartTest />} />
                 </Route>
 
                 <Route path="*" element={<NotFound />} />
