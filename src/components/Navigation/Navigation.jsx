@@ -42,6 +42,10 @@ function Navigation() {
       to: "/redux",
       label: "Redux",
     },
+    {
+      to: "/test-performance",
+      label: "Test Performance",
+    },
   ];
 
   return (

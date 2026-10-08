@@ -52,6 +52,9 @@ const ReduxUsers = lazy(
 const CartTest = lazy(
   () => import("@pages/redux/children/CartTest/CartTest.jsx"),
 );
+const TestPerformance = lazy(
+  () => import("@pages//TestPerformance/TestPerformance.jsx"),
+);
 
 function App() {
   const [theme, setTheme] = useState("dark");
@@ -146,6 +149,11 @@ function App() {
                     <Route path="users" element={<ReduxUsers />} />
                     <Route path="cart" element={<CartTest />} />
                   </Route>
+
+                  <Route
+                    path="/test-performance"
+                    element={<TestPerformance />}
+                  />
 
                   <Route path="*" element={<NotFound />} />
                 </Routes>
