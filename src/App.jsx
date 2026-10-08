@@ -1,32 +1,57 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "@pages/home/Home";
-import About from "@pages/about/About";
-import Users from "@pages/users/Users";
-import DefaultLayout from "@layouts/default/DefaultLayout.jsx";
 import { ThemeContext } from "@context/ThemeContext";
+import Home from "@pages/home/Home";
+
 import Navigation from "@components/Navigation/Navigation.jsx";
-import UserDetails from "@pages/userDetails/UserDetails.jsx";
-import UserProfile from "@pages/userDetails/children/userProfile/UserProfile.jsx";
-import UserPosts from "@pages/userDetails/children/userPosts/UserPosts.jsx";
-import UserOverview from "@pages/userDetails/UserOverview.jsx";
-import NotFound from "@pages/notFound/NotFound.jsx";
+import DefaultLayout from "@layouts/default/DefaultLayout.jsx";
 import ProtectedRoute from "@components/ProtectedRoute/ProtectedRoute.jsx";
-import Dashboard from "@pages/dashboard/Dashboard.jsx";
-import Login from "@pages/login/Login.jsx";
-import TestForm from "@pages/form/Form.jsx";
-import TestFetch from "@pages/testFetch/TestFetch.jsx";
-import UsersFetch from "@pages/testFetch/children/UsersFetch/UsersFetch.jsx";
-import SearchFetch from "@pages/testFetch/children/SearchFetch/SearchFetch.jsx";
-import UsersWithHook from "@pages/testFetch/children/UsersWithHook/UsersWithHook.jsx";
-import QueryProvider from "@pages/queryProvider/QueryProvider.jsx";
-import UsersQuery from "@pages/queryProvider/chilldren/usersQuery/UsersQuery.jsx";
-import ZustandPage from "@pages/zustand/ZustandPage.jsx";
-import Counter from "@pages/zustand/children/counter/Counter.jsx";
-import CounterDisplay from "@pages/zustand/children/counter/CounterDisplay.jsx";
-import ReduxPage from "@pages/redux/ReduxPage.jsx";
-import ReduxUsers from "@pages/redux/children/UseSelector/ReduxUsers.jsx";
-import CartTest from "@pages/redux/children/CartTest/CartTest.jsx";
+
+const About = lazy(() => import("@pages/about/About"));
+const Users = lazy(() => import("@pages/users/Users"));
+const UserDetails = lazy(() => import("@pages/userDetails/UserDetails.jsx"));
+const UserProfile = lazy(
+  () => import("@pages/userDetails/children/userProfile/UserProfile.jsx"),
+);
+const UserPosts = lazy(
+  () => import("@pages/userDetails/children/userPosts/UserPosts.jsx"),
+);
+const UserOverview = lazy(() => import("@pages/userDetails/UserOverview.jsx"));
+const NotFound = lazy(() => import("@pages/notFound/NotFound.jsx"));
+
+const Dashboard = lazy(() => import("@pages/dashboard/Dashboard.jsx"));
+const Login = lazy(() => import("@pages/login/Login.jsx"));
+const TestForm = lazy(() => import("@pages/form/Form.jsx"));
+const TestFetch = lazy(() => import("@pages/testFetch/TestFetch.jsx"));
+const UsersFetch = lazy(
+  () => import("@pages/testFetch/children/UsersFetch/UsersFetch.jsx"),
+);
+const SearchFetch = lazy(
+  () => import("@pages/testFetch/children/SearchFetch/SearchFetch.jsx"),
+);
+const UsersWithHook = lazy(
+  () => import("@pages/testFetch/children/UsersWithHook/UsersWithHook.jsx"),
+);
+const QueryProvider = lazy(
+  () => import("@pages/queryProvider/QueryProvider.jsx"),
+);
+const UsersQuery = lazy(
+  () => import("@pages/queryProvider/chilldren/usersQuery/UsersQuery.jsx"),
+);
+const ZustandPage = lazy(() => import("@pages/zustand/ZustandPage.jsx"));
+const Counter = lazy(
+  () => import("@pages/zustand/children/counter/Counter.jsx"),
+);
+const CounterDisplay = lazy(
+  () => import("@pages/zustand/children/counter/CounterDisplay.jsx"),
+);
+const ReduxPage = lazy(() => import("@pages/redux/ReduxPage.jsx"));
+const ReduxUsers = lazy(
+  () => import("@pages/redux/children/UseSelector/ReduxUsers.jsx"),
+);
+const CartTest = lazy(
+  () => import("@pages/redux/children/CartTest/CartTest.jsx"),
+);
 
 function App() {
   const [theme, setTheme] = useState("dark");
@@ -77,53 +102,57 @@ function App() {
               {/*<button onClick={() => setIsAuthenticated((prev) => !prev)}>*/}
               {/*  Toggle Auth {isAuthenticated ? "Logout" : "Login"}*/}
               {/*</button>*/}
+              <Suspense>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/users" element={<Users />} />
+                  <Route path="/users/:id" element={<UserDetails />}>
+                    <Route index element={<UserOverview />} />
+                    <Route path="profile" element={<UserProfile />} />
+                    <Route path="posts" element={<UserPosts />} />
 
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/users" element={<Users />} />
-                <Route path="/users/:id" element={<UserDetails />}>
-                  <Route index element={<UserOverview />} />
-                  <Route path="profile" element={<UserProfile />} />
-                  <Route path="posts" element={<UserPosts />} />
+                    <Route path="*" element={<p>User section not found</p>} />
+                  </Route>
 
-                  <Route path="*" element={<p>User section not found</p>} />
-                </Route>
+                  <Route
+                    path="/dashboard"
+                    element={
+                      <ProtectedRoute>
+                        <Dashboard />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route path="/login" element={<Login />} />
 
-                <Route
-                  path="/dashboard"
-                  element={
-                    <ProtectedRoute>
-                      <Dashboard />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="/login" element={<Login />} />
+                  <Route path="/form" element={<TestForm />} />
 
-                <Route path="/form" element={<TestForm />} />
+                  <Route path="/fetch" element={<TestFetch />}>
+                    <Route path="users" element={<UsersFetch />} />
+                    <Route path="search" element={<SearchFetch />} />
+                    <Route path="users-with-hook" element={<UsersWithHook />} />
+                  </Route>
 
-                <Route path="/fetch" element={<TestFetch />}>
-                  <Route path="users" element={<UsersFetch />} />
-                  <Route path="search" element={<SearchFetch />} />
-                  <Route path="users-with-hook" element={<UsersWithHook />} />
-                </Route>
+                  <Route path="/query-provider" element={<QueryProvider />}>
+                    <Route path="users-query" element={<UsersQuery />} />
+                  </Route>
 
-                <Route path="/query-provider" element={<QueryProvider />}>
-                  <Route path="users-query" element={<UsersQuery />} />
-                </Route>
+                  <Route path="/zustand" element={<ZustandPage />}>
+                    <Route path="counter" element={<Counter />} />
+                    <Route
+                      path="counter-display"
+                      element={<CounterDisplay />}
+                    />
+                  </Route>
 
-                <Route path="/zustand" element={<ZustandPage />}>
-                  <Route path="counter" element={<Counter />} />
-                  <Route path="counter-display" element={<CounterDisplay />} />
-                </Route>
+                  <Route path="/redux" element={<ReduxPage />}>
+                    <Route path="users" element={<ReduxUsers />} />
+                    <Route path="cart" element={<CartTest />} />
+                  </Route>
 
-                <Route path="/redux" element={<ReduxPage />}>
-                  <Route path="users" element={<ReduxUsers />} />
-                  <Route path="cart" element={<CartTest />} />
-                </Route>
-
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
             </div>
           </main>
         </DefaultLayout>
