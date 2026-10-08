@@ -35,8 +35,8 @@ function Login() {
       name: "Anna",
     });
     navigate(from, {
- replace: true 
-});
+      replace: true,
+    });
   };
 
   return (

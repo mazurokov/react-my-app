@@ -99,9 +99,6 @@ function App() {
             <div className="relative z-10">
               <Navigation />
 
-              {/*<button onClick={() => setIsAuthenticated((prev) => !prev)}>*/}
-              {/*  Toggle Auth {isAuthenticated ? "Logout" : "Login"}*/}
-              {/*</button>*/}
               <Suspense>
                 <Routes>
                   <Route path="/" element={<Home />} />

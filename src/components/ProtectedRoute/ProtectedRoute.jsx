@@ -4,12 +4,18 @@ import useAuth from "@store/useAuth/useAuth.js";
 function ProtectedRoute({ children }) {
   const location = useLocation();
 
-  const isAuthenticated = useAuth((state) => state.isAuthenticated);
+  const isAuthenticated = useAuth((state) => state.user);
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" replace state={{
- from: location 
-}} />;
+    return (
+      <Navigate
+        to="/login"
+        replace
+        state={{
+          from: location,
+        }}
+      />
+    );
   }
 
   return children;
