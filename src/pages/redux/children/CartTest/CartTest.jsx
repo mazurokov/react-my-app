@@ -5,6 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectCart,
   addItem,
+  clearCart,
+  incrementQuantity,
+  decrementQuantity,
+  removeItem,
   selectCartCount,
   selectCartTotal,
 } from "@store/redux/useCart.js";
@@ -13,11 +17,6 @@ function CartTest() {
   const cart = useSelector(selectCart);
   const cartCount = useSelector(selectCartCount);
   const cartTotal = useSelector(selectCartTotal);
-  // const addItem = cartStore((state) => state.addItem);
-  // const removeItem = cartStore((state) => state.removeItem);
-  // const incrementQuantity = cartStore((state) => state.incrementQuantity);
-  // const decrementQuantity = cartStore((state) => state.decrementQuantity);
-  // const clearCart = cartStore((state) => state.clearCart);
 
   const dispatch = useDispatch();
 
@@ -62,14 +61,14 @@ function CartTest() {
         >
           Add Product 2
         </CommonButton>
-        {/*<CommonButton*/}
-        {/*  onClick={clearCart}*/}
-        {/*  type="button"*/}
-        {/*  variant="outline"*/}
-        {/*  className="border-white/10 bg-transparent text-zinc-200 hover:bg-white/5"*/}
-        {/*>*/}
-        {/*  Clear Cart*/}
-        {/*</CommonButton>*/}
+        <CommonButton
+          onClick={() => dispatch(clearCart())}
+          type="button"
+          variant="outline"
+          className="border-white/10 bg-transparent text-zinc-200 hover:bg-white/5"
+        >
+          Clear Cart
+        </CommonButton>
       </div>
 
       <h2 className="mb-4 text-xl font-semibold text-white">Cart Items:</h2>
@@ -92,28 +91,28 @@ function CartTest() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  {/*<button*/}
-                  {/*  className="h-8 w-8 rounded-lg border border-white/10 bg-white/5 text-lg font-semibold text-zinc-200 transition hover:bg-white/10"*/}
-                  {/*  onClick={() => incrementQuantity(item.id)}*/}
-                  {/*  type="button"*/}
-                  {/*>*/}
-                  {/*  +*/}
-                  {/*</button>*/}
-                  {/*<button*/}
-                  {/*  className="h-8 w-8 rounded-lg border border-white/10 bg-white/5 text-lg font-semibold text-zinc-200 transition hover:bg-white/10"*/}
-                  {/*  onClick={() => decrementQuantity(item.id)}*/}
-                  {/*  type="button"*/}
-                  {/*>*/}
-                  {/*  -*/}
-                  {/*</button>*/}
-                  {/*<CommonButton*/}
-                  {/*  onClick={() => removeItem(item.id)}*/}
-                  {/*  type="button"*/}
-                  {/*  variant="danger"*/}
-                  {/*  className="px-3 py-1.5"*/}
-                  {/*>*/}
-                  {/*  Remove*/}
-                  {/*</CommonButton>*/}
+                  <button
+                    className="h-8 w-8 rounded-lg border border-white/10 bg-white/5 text-lg font-semibold text-zinc-200 transition hover:bg-white/10"
+                    onClick={() => dispatch(incrementQuantity(item.id))}
+                    type="button"
+                  >
+                    +
+                  </button>
+                  <button
+                    className="h-8 w-8 rounded-lg border border-white/10 bg-white/5 text-lg font-semibold text-zinc-200 transition hover:bg-white/10"
+                    onClick={() => dispatch(decrementQuantity(item.id))}
+                    type="button"
+                  >
+                    -
+                  </button>
+                  <CommonButton
+                    onClick={() => dispatch(removeItem(item.id))}
+                    type="button"
+                    variant="danger"
+                    className="px-3 py-1.5"
+                  >
+                    Remove
+                  </CommonButton>
                 </div>
               </div>
             ))}
