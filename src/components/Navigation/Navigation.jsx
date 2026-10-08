@@ -43,8 +43,8 @@ function Navigation() {
       label: "Redux",
     },
     {
-      to: "/test-performance",
-      label: "Test Performance",
+      to: "/memo-test",
+      label: "Memo Test",
     },
   ];
 
