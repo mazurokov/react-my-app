@@ -1,5 +1,6 @@
 import {useState, useCallback, useMemo} from "react";
 import ChildButton from "./ChildButton";
+import VirtualList from "@pages/MemoTest/VirtualList.jsx";
 
 function MemoTest() {
   const [count, setCount] = useState(0);
@@ -32,6 +33,8 @@ function MemoTest() {
 
       <ChildButton onClick={handleChildClick}
                    settings={settings}/>
+
+      <VirtualList />
     </div>
   );
 }
