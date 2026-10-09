@@ -1,7 +1,7 @@
 import { memo } from "react";
 
-function ChildButton({ onClick }) {
-  console.log("ChildButton render");
+function ChildButton({ onClick, settings }) {
+  console.log("ChildButton render", settings);
 
   return <button onClick={onClick}>Child button</button>;
 }

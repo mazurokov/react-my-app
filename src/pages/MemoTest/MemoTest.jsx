@@ -1,9 +1,15 @@
-import { useState, useCallback } from "react";
+import {useState, useCallback, useMemo} from "react";
 import ChildButton from "./ChildButton";
 
 function MemoTest() {
   const [count, setCount] = useState(0);
   const [theme, setTheme] = useState("dark");
+
+  const settings = useMemo(() => {
+    return {
+      size: "large",
+    };
+  }, []);
 
   const handleChildClick = useCallback(() => {
     console.log("Child button clicked");
@@ -24,7 +30,8 @@ function MemoTest() {
         Toggle theme
       </button>
 
-      <ChildButton onClick={handleChildClick} />
+      <ChildButton onClick={handleChildClick}
+                   settings={settings}/>
     </div>
   );
 }
