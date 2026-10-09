@@ -10,7 +10,7 @@ function VirtualList() {
     }, (_, index) => `Item ${index + 1}`),
     [],
   );
-
+  // eslint-disable-next-line react-hooks/incompatible-library
   const virtualizer = useVirtualizer({
     count: items.length,
     getScrollElement: () => parentRef.current,
