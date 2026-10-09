@@ -63,9 +63,7 @@ function Counter() {
  type: "INCREMENT" 
 })}
           className="rounded-xl bg-gradient-to-r from-violet-500 to-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110"
-        >
-          +
-        </button>
+        >+</button>
 
         <button
           type="button"
