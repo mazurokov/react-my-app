@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { USERS_API_URL } from "../../../../config/api.js";
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -15,7 +16,7 @@ function Users() {
 
   const createUser = async () => {
     try {
-      const response = await fetch("https://jsonplaceholder.typicode.com/users", {
+      const response = await fetch(USERS_API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +71,7 @@ function Users() {
 
   const getUsers = async () => {
     try {
-      const response = await fetch("https://jsonplaceholder.typicode.com/users");
+      const response = await fetch(USERS_API_URL);
 
       if (!response.ok) {
         throw new Error("Не вдалося отримати користувачів");
@@ -90,7 +91,7 @@ function Users() {
     setIsDeletingArray((prevDeleting) => [...prevDeleting, id]);
 
     try {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+      const response = await fetch(`${USERS_API_URL}/${id}`, {
         method: "DELETE",
       });
 
@@ -115,7 +116,7 @@ function Users() {
 
   const saveUser = async (id) => {
     try {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+      const response = await fetch(`${USERS_API_URL}/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

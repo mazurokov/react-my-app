@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { USERS_API_URL } from "../../../../config/api.js";
 
 function GetUsers() {
   const [users, setUsers] = useState([]);
@@ -6,7 +7,7 @@ function GetUsers() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users/")
+    fetch(USERS_API_URL)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Помилка сервера");

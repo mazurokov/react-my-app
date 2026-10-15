@@ -5,9 +5,13 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  envPrefix: ["VITE_", "API_", "APP_"],
+
   resolve: {
     alias: {
-      "@components": fileURLToPath(new URL("./src/components", import.meta.url)),
+      "@components": fileURLToPath(
+        new URL("./src/components", import.meta.url),
+      ),
       "@pages": fileURLToPath(new URL("./src/pages", import.meta.url)),
       "@layouts": fileURLToPath(new URL("./src/layouts", import.meta.url)),
       "@store": fileURLToPath(new URL("./src/store", import.meta.url)),
@@ -20,6 +24,7 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+
   test: {
     environment: "jsdom",
   },

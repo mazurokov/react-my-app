@@ -1,5 +1,6 @@
 import useFetch from "@pages/testFetch/hooks/useFetch.js";
 import { useEffect, useState } from "react";
+import { USERS_API_URL } from "../../../../config/api.js";
 
 function UsersWithHook() {
   const [search, setSearch] = useState("");
@@ -12,7 +13,7 @@ function UsersWithHook() {
   };
 
   const { data, loading, error } = useFetch(
-    `https://jsonplaceholder.typicode.com/users?search=${debouncedSearch}`,
+    `${USERS_API_URL}?search=${debouncedSearch}`,
   );
 
   useEffect(() => {

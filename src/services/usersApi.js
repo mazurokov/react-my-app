@@ -1,5 +1,6 @@
-const BASE_URL =
-  "https://jsonplaceholder.typicode.com/users";
+import { USERS_API_URL } from "../config/api.js";
+
+const BASE_URL = USERS_API_URL;
 
 const fetchUsers = async () => {
   const response = await fetch(BASE_URL);
