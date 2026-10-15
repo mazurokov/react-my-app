@@ -6,6 +6,7 @@ import Home from "@pages/home/Home";
 import Navigation from "@components/Navigation/Navigation.jsx";
 import DefaultLayout from "@layouts/default/DefaultLayout.jsx";
 import ProtectedRoute from "@components/ProtectedRoute/ProtectedRoute.jsx";
+import ErrorDemo from "@pages/test/ErrorDemo.jsx";
 
 const About = lazy(() => import("@pages/about/About"));
 const Users = lazy(() => import("@pages/users/Users"));
@@ -149,6 +150,8 @@ function App() {
                   </Route>
 
                   <Route path="/memo-test" element={<MemoTest />} />
+
+                  <Route path="/error-demo" element={<ErrorDemo />} />
 
                   <Route path="*" element={<NotFound />} />
                 </Routes>
