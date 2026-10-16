@@ -1,7 +1,7 @@
 import { useState } from "react";
-import useUsers from "@pages/queryProvider/hooks/useUsers";
-import UserItem from "@pages/queryProvider/chilldren/usersQuery/components/UserItem.jsx";
-import UserForm from "@pages/queryProvider/chilldren/usersQuery/components/UserForm.jsx";
+import useUsers from "@pages/QueryProvider/Hooks/useUsers";
+import UserItem from "@pages/QueryProvider/Chilldren/UsersQuery/Components/UserItem.jsx";
+import UserForm from "@pages/QueryProvider/Chilldren/UsersQuery/Components/UserForm.jsx";
 import Notice from "@components/Notice/Notice.jsx";
 import CommonButton from "@components/CommonButton/CommonButton.jsx";
 

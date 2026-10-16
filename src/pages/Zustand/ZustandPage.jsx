@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
-import AuthTest from "@pages/zustand/children/authTest/AuthTest.jsx";
-import CartTest from "@pages/zustand/children/CartTest/CartTest.jsx";
+import AuthTest from "@pages/Zustand/Children/AuthTest/AuthTest.jsx";
+import CartTest from "@pages/Zustand/Children/CartTest/CartTest.jsx";
 
 function ZustandPage() {
   return (

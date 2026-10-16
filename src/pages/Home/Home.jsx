@@ -1,26 +1,26 @@
 import { useContext } from "react";
 import { ThemeContext } from "@context/ThemeContext";
 
-import UserProfile from "@pages/home/components/UserProfile/UserProfile.jsx";
-import Timer from "@pages/home/components/Timer/Timer.jsx";
-import WindowWidth from "@pages/home/components/WindowWidth/WindowWidth.jsx";
-import UserList from "@pages/home/components/UserList/UserList.jsx";
+import UserProfile from "@pages/Home/Components/UserProfile/UserProfile.jsx";
+import Timer from "@pages/Home/Components/Timer/Timer.jsx";
+import WindowWidth from "@pages/Home/Components/WindowWidth/WindowWidth.jsx";
+import UserList from "@pages/Home/Components/UserList/UserList.jsx";
 import Toolbar from "@components/Toolbar/Toolbar.jsx";
-import Counter from "@pages/home/components/Counter/Counter.jsx";
+import Counter from "@pages/Home/Components/Counter/Counter.jsx";
 import LoginForm from "@components/Form/LoginForm.jsx";
-import MapList from "@pages/home/components/MapList/MapList.jsx";
-import User from "@pages/home/components/User/User.jsx";
-import Users from "@pages/home/components/Users/Users.jsx";
-import NameInput from "@pages/home/components/NameInput/NameInput.jsx";
-import NewTimer from "@pages/home/components/NewTimer/NewTimer.jsx";
-import GetUsers from "@pages/home/components/GetUsers/GetUsers.jsx";
-import AddUsers from "@pages/home/components/AddUsers/AddUsers.jsx";
-import FilteredUsers from "@pages/home/components/FilteredUsers/FilteredUsers.jsx";
-import UserSearch from "@pages/home/components/UserSearch/UserSearch.jsx";
-import UserUseReducer from "@pages/home/components/UserUseReducer/UserUseReducer.jsx";
-import TestUseRef from "@pages/home/components/UseRef/UseRef.jsx";
-import RefCounter from "@pages/home/components/RefCounter/RefCounter.jsx";
-import WrapperRefInterval from "@pages/home/components/WrapperRefInterval/WrapperRefInterval.jsx";
+import MapList from "@pages/Home/Components/MapList/MapList.jsx";
+import User from "@pages/Home/Components/User/User.jsx";
+import Users from "@pages/Home/Components/Users/Users.jsx";
+import NameInput from "@pages/Home/Components/NameInput/NameInput.jsx";
+import NewTimer from "@pages/Home/Components/NewTimer/NewTimer.jsx";
+import GetUsers from "@pages/Home/Components/GetUsers/GetUsers.jsx";
+import AddUsers from "@pages/Home/Components/AddUsers/AddUsers.jsx";
+import FilteredUsers from "@pages/Home/Components/FilteredUsers/FilteredUsers.jsx";
+import UserSearch from "@pages/Home/Components/UserSearch/UserSearch.jsx";
+import UserUseReducer from "@pages/Home/Components/UserUseReducer/UserUseReducer.jsx";
+import TestUseRef from "@pages/Home/Components/UseRef/UseRef.jsx";
+import RefCounter from "@pages/Home/Components/RefCounter/RefCounter.jsx";
+import WrapperRefInterval from "@pages/Home/Components/WrapperRefInterval/WrapperRefInterval.jsx";
 
 export default function Home() {
   const { theme, toggleTheme } = useContext(ThemeContext);

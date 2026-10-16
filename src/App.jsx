@@ -1,57 +1,57 @@
 import { useState, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeContext } from "@context/ThemeContext";
-import Home from "@pages/home/Home";
+import Home from "@pages/Home/Home";
 
 import Navigation from "@components/Navigation/Navigation.jsx";
 import DefaultLayout from "@layouts/default/DefaultLayout.jsx";
 import ProtectedRoute from "@components/ProtectedRoute/ProtectedRoute.jsx";
-import ErrorDemo from "@pages/test/ErrorDemo.jsx";
+import ErrorDemo from "@pages/ErrorDemo/ErrorDemo.jsx";
 
-const About = lazy(() => import("@pages/about/About"));
-const Users = lazy(() => import("@pages/users/Users"));
-const UserDetails = lazy(() => import("@pages/userDetails/UserDetails.jsx"));
+const About = lazy(() => import("@pages/About/About"));
+const Users = lazy(() => import("@pages/Users/Users"));
+const UserDetails = lazy(() => import("@pages/UserDetails/UserDetails.jsx"));
 const UserProfile = lazy(
-  () => import("@pages/userDetails/children/userProfile/UserProfile.jsx"),
+  () => import("@pages/UserDetails/Children/UserProfile/UserProfile.jsx"),
 );
 const UserPosts = lazy(
-  () => import("@pages/userDetails/children/userPosts/UserPosts.jsx"),
+  () => import("@pages/UserDetails/Children/UserPosts/UserPosts.jsx"),
 );
-const UserOverview = lazy(() => import("@pages/userDetails/UserOverview.jsx"));
-const NotFound = lazy(() => import("@pages/notFound/NotFound.jsx"));
+const UserOverview = lazy(() => import("@pages/UserDetails/UserOverview.jsx"));
+const NotFound = lazy(() => import("@pages/NotFound/NotFound.jsx"));
 
-const Dashboard = lazy(() => import("@pages/dashboard/Dashboard.jsx"));
-const Login = lazy(() => import("@pages/login/Login.jsx"));
-const TestForm = lazy(() => import("@pages/form/Form.jsx"));
-const TestFetch = lazy(() => import("@pages/testFetch/TestFetch.jsx"));
+const Dashboard = lazy(() => import("@pages/Dashboard/Dashboard.jsx"));
+const Login = lazy(() => import("@pages/Login/Login.jsx"));
+const TestForm = lazy(() => import("@pages/Form/Form.jsx"));
+const TestFetch = lazy(() => import("@pages/TestFetch/TestFetch.jsx"));
 const UsersFetch = lazy(
-  () => import("@pages/testFetch/children/UsersFetch/UsersFetch.jsx"),
+  () => import("@pages/TestFetch/Children/UsersFetch/UsersFetch.jsx"),
 );
 const SearchFetch = lazy(
-  () => import("@pages/testFetch/children/SearchFetch/SearchFetch.jsx"),
+  () => import("@pages/TestFetch/Children/SearchFetch/SearchFetch.jsx"),
 );
 const UsersWithHook = lazy(
-  () => import("@pages/testFetch/children/UsersWithHook/UsersWithHook.jsx"),
+  () => import("@pages/TestFetch/Children/UsersWithHook/UsersWithHook.jsx"),
 );
 const QueryProvider = lazy(
-  () => import("@pages/queryProvider/QueryProvider.jsx"),
+  () => import("@pages/QueryProvider/QueryProvider.jsx"),
 );
 const UsersQuery = lazy(
-  () => import("@pages/queryProvider/chilldren/usersQuery/UsersQuery.jsx"),
+  () => import("@pages/QueryProvider/Chilldren/UsersQuery/UsersQuery.jsx"),
 );
-const ZustandPage = lazy(() => import("@pages/zustand/ZustandPage.jsx"));
+const ZustandPage = lazy(() => import("@pages/Zustand/ZustandPage.jsx"));
 const Counter = lazy(
-  () => import("@pages/zustand/children/counter/Counter.jsx"),
+  () => import("@pages/Zustand/Children/Counter/Counter.jsx"),
 );
 const CounterDisplay = lazy(
-  () => import("@pages/zustand/children/counter/CounterDisplay.jsx"),
+  () => import("@pages/Zustand/Children/Counter/CounterDisplay.jsx"),
 );
-const ReduxPage = lazy(() => import("@pages/redux/ReduxPage.jsx"));
+const ReduxPage = lazy(() => import("@pages/Redux/ReduxPage.jsx"));
 const ReduxUsers = lazy(
-  () => import("@pages/redux/children/UseSelector/ReduxUsers.jsx"),
+  () => import("@pages/Redux/Children/UseSelector/ReduxUsers.jsx"),
 );
 const CartTest = lazy(
-  () => import("@pages/redux/children/CartTest/CartTest.jsx"),
+  () => import("@pages/Redux/Children/CartTest/CartTest.jsx"),
 );
 const MemoTest = lazy(() => import("@pages/MemoTest/MemoTest.jsx"));
 

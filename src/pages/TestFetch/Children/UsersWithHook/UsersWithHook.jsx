@@ -1,4 +1,4 @@
-import useFetch from "@pages/testFetch/hooks/useFetch.js";
+import useFetch from "@pages/TestFetch/Hooks/useFetch.js";
 import { useEffect, useState } from "react";
 import { USERS_API_URL } from "../../../../config/api.js";
 
